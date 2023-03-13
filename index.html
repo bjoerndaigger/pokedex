@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
+    <link rel="stylesheet" href="fonts.css">
 
     <script>
         let currentPokemon; // globale Variable die JSON von API aufruft
@@ -27,12 +28,14 @@
     <style>
         body {
             margin: 0;
+            font-family: 'Open Sans', sans-serif;
         }
 
         #pokedex {
             min-height: 50vh;
             background-color: rgb(219, 33, 33);
             color: white;
+            display: flex;
         }
 
         #pokemon-img {
