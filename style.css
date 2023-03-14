@@ -1,34 +1,26 @@
-body {
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-    background-color: lightgray;
+/* main */
+
+.pokemon-img {
+    height: 200px;
 }
 
-.pokemon-card {
-    border-radius: 40px;
-    min-height: 50vh;
-}
+/* popup card */
 
 .name-container {
-    min-height: 40vh;
+    min-height: 50vh;
     background-color: #FD6C6D;
     color: white;
-    
-    padding: 24px;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
 }
 
 #pokemon-img {
-    height: 300px;
     margin-top: -200px;
 }
 
 .info-container {
-    min-height: 40vh;
+    min-height: 50vh;
     background-color: white;
     border-radius: 40px;
     margin-top: -40px;
-    display: flex;
-    justify-content: center;
 }
