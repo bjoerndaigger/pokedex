@@ -14,12 +14,21 @@ function renderPokemon() {
     let content = document.getElementById('pokemon');
     content.innerHTML = '';
 
+    
+
     for (let i = 0; i < pokemonData.length; i++) {
         const pokemonName = pokemonData[i];
+        let name = pokemonName['name'];
+        let id = pokemonName['id'];
+        let image = pokemonName['sprites']['other']['official-artwork']['front_default'];
+       
         content.innerHTML += `
-            <div>
-                <h2 class="text-capitalize">${pokemonName['name']}</h2>
-                <img class="pokemon-img" src="${pokemonName['sprites']['other']['official-artwork']['front_default']}">
+            <div class="m-5">
+                <div class="d-flex justify-content-between">
+                    <h2 class="text-capitalize">${name}</h2>
+                    <span>#${id}</span>
+                </div>
+                <img class="pokemon-img" src="${image}">
             </div>
         `;
     }
