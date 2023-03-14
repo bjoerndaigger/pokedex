@@ -1,40 +1,22 @@
-let currentPokemon; // globale Variable die JSON von API aufruft
+let pokemonData = []; // globale Variable die JSON von API aufruft
 
 async function loadPokemon() {
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0'; // URL der API
-    let response = await fetch(url); // Aufruf an Server und Abruf der Daten
-    currentPokemon = await response.json(); // umwandeln der Textdaten ins JSON-Format
-    console.log('loaded Pokemon', currentPokemon);
-    renderPokemon();
-   // renderPokemonCard();
+    for (let i = 1; i < 4; i++) {
+        let url = `https://pokeapi.co/api/v2/pokemon/${i}/`; // URL der API
+        let response = await fetch(url); // Aufruf an Server und Abruf der Daten
+        let pokemon = await response.json(); // umwandeln der Textdaten ins JSON-Format
+        pokemonData.push(pokemon); // push der Daten in Array pokemonData
+        renderPokemon();
+    }
 }
 
 function renderPokemon() {
- let container = document.getElementById('pokemon');
- let pokemon = currentPokemon['results'];
- 
-for (let i = 0; i < pokemon.length; i++) {
-    const names = pokemon[i];
-    let name = names['name']
-    container.innerHTML += `
-    <div>${name}</div>
-    `;
-    
-}
-  
+   document.getElementById('pokemon').innerHTML = `Test`;
+
 }
 
-/* function renderPokemon() {
-    let name = currentPokemon['name'];
-    let img = currentPokemon['sprites']['other']['official-artwork']['front_default'];
 
-    document.getElementById('pokemon').innerHTML = `
-        <h2>${name}</h2>
-        <img class="pokemon-img" src="${img}">
-    `;
-}*/
-
-/*function renderPokemonCard() {
-    document.getElementById('pokemon-name').innerHTML = currentPokemon['name']; // rendern des Namens
-    document.getElementById('pokemon-img').src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+/* function renderPokemonCard() {
+    document.getElementById('pokemon-name').innerHTML = pokemonData['name']; // rendern des Namens
+    document.getElementById('pokemon-img').src = pokemonData['sprites']['other']['official-artwork']['front_default'];
 }*/
