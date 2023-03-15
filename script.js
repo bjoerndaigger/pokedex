@@ -20,15 +20,15 @@ function renderPokemon() {
         let id = pokemonName['id'];
         let idAsString = id.toString().padStart(3, '0');
         let image = pokemonName['sprites']['other']['official-artwork']['front_default'];
-        let type1 = pokemonName['types'][0]['type']['name'];
-      //  let type2 = pokemonName['types'][1]['type']['name'];
+        let type = pokemonName['types'][0]['type']['name'];
        
         content.innerHTML += `
             <div class="m-5">
-                <div class="d-flex justify-content-between">
-                    <h2 class="text-capitalize">${name}</h2>
-                    <span>${idAsString}</span>
-                    <div>${type1}</div>
+                <div class="d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="text-capitalize">${name}</h2><div>#${idAsString}</div>
+                    </div>
+                    <div class="text-capitalize">${type}</div>
                 </div>
                 <img class="pokemon-img" src="${image}">
             </div>
