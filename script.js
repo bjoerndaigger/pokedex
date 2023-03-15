@@ -16,6 +16,7 @@ function renderPokemon() {
 
     for (let i = 0; i < pokemonData.length; i++) {
         const pokemonName = pokemonData[i];
+        
         let name = pokemonName['name'];
         let id = pokemonName['id'];
         let idAsString = id.toString().padStart(3, '0');
@@ -23,7 +24,7 @@ function renderPokemon() {
         let type = pokemonName['types'][0]['type']['name'];
        
         content.innerHTML += `
-            <div class="m-5">
+            <div id="frame" class="m-5">
                 <div class="d-flex flex-column">
                     <div class="d-flex justify-content-between">
                         <h2 class="text-capitalize">${name}</h2><div>#${idAsString}</div>
@@ -33,6 +34,13 @@ function renderPokemon() {
                 <img class="pokemon-img" src="${image}">
             </div>
         `;
+        chooseBackgroundColor(type);
+    }
+}
+
+function chooseBackgroundColor(type) {
+    if (type === 'grass') {
+        document.getElementById('frame').classList.add('bg-success');
     }
 }
 
