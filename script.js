@@ -1,28 +1,7 @@
 let pokemonData = []; // globale Variable die JSON von API aufruft
 
-const colours = {
-	normal: '#A8A77A',
-	fire: '#EE8130',
-	water: '#6390F0',
-	electric: '#F7D02C',
-	grass: '#7AC74C',
-	ice: '#96D9D6',
-	fighting: '#C22E28',
-	poison: '#A33EA1',
-	ground: '#E2BF65',
-	flying: '#A98FF3',
-	psychic: '#F95587',
-	bug: '#A6B91A',
-	rock: '#B6A136',
-	ghost: '#735797',
-	dragon: '#6F35FC',
-	dark: '#705746',
-	steel: '#B7B7CE',
-	fairy: '#D685AD',
-};
-
 async function loadPokemon() {
-    for (let i = 1; i < 150; i++) {
+    for (let i = 1; i < 11; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}/`; // URL der API
         let response = await fetch(url); // Aufruf an Server und Abruf der Daten
         let pokemon = await response.json(); // umwandeln der Textdaten ins JSON-Format
@@ -60,15 +39,12 @@ function renderPokemon() {
 }
 
 function chooseBackgroundColor(i, type) {
-    if (type == 'grass') {
-        document.getElementById(`frame${i}`).classList.add('bg-green');
-    }
-    if (type == 'fire') {
-        document.getElementById(`frame${i}`).classList.add('bg-red');
-    }
-    if (type == 'water') {
-        document.getElementById(`frame${i}`).classList.add('bg-blue');
-    }
+    document.getElementById(`frame${i}`).classList.add(type);
+
+}
+
+function loadMorePokemon() {
+    
 }
 
 
