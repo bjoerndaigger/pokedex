@@ -23,20 +23,26 @@ function renderPokemon() {
         let image = pokemonName['sprites']['other']['official-artwork']['front_default'];
         let type = pokemonName['types'][0]['type']['name'];
        
-        content.innerHTML += `
-            <div id="frame${i}" class="m-5">
-                <div class="d-flex flex-column">
-                    <div class="d-flex justify-content-between">
-                        <h2 class="text-capitalize">${name}</h2><div>#${idAsString}</div>
-                    </div>
-                    <div class="text-capitalize">${type}</div>
+       
+        content.innerHTML += /*html*/ `
+            <div id="frame${i}" class="pokemon-container text-white m-3 p-3 rounded-5"> 
+                <div class="d-flex justify-content-between">
+                    <h2 class="text-capitalize">${name}</h2>
+                    <small class="fw-bold">#${idAsString}</small>
                 </div>
-                <img class="pokemon-img" src="${image}">
+                <div class="d-flex flex-row justify-content-between">
+                    <div>
+                        <div class="text-capitalize type-field rounded-5">${type}</div>
+                    </div>
+                    <img class="pokemon-img" src="${image}"> 
+                </div>
             </div>
         `;
         chooseBackgroundColor(i, type);
     }
 }
+
+// To-Do: Render Pokemon-Type
 
 function chooseBackgroundColor(i, type) {
     document.getElementById(`frame${i}`).classList.add(type);

@@ -1,24 +1,24 @@
 /* main */
 
+h2 {
+    font-size: 1.5rem !important;
+}
+
+.pokemon-container {
+    width: 250px;
+}
+
+.type-field {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
 .pokemon-img {
-    height: 200px;
+    max-width: 100px;
+    max-height: 100px;
 }
-
-.bg-green {
-    background-color: #4AD0B0;
-}
-
-.bg-red {
-    background-color: #FD6C6D;
-}
-
-.bg-blue {
-    background-color: #70B7F9;
-}
-
 /* pokemon types */
-
-
 .normal {
     background-color: #A8A77A;
 }
@@ -90,10 +90,7 @@
 .fairy {
     background-color: #D685AD;
 }
-
-
 /* popup card */
-
 .name-container {
     min-height: 50vh;
     background-color: #FD6C6D;
