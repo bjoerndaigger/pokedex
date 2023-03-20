@@ -91,6 +91,12 @@ h2 {
     background-color: #D685AD;
 }
 /* popup card */
+
+.container {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+}
 .name-container {
     min-height: 50vh;
     background-color: #FD6C6D;
