@@ -26,7 +26,7 @@ function renderPokemon() {
 
 
         content.innerHTML += /*html*/ `
-            <div id="frame${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPokemonCard()"> 
+            <div id="frame${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i})"> 
                 <div class="d-flex justify-content-between">
                     <h2 class="text-capitalize">${name}</h2>
                     <small class="fw-bold">#${idAsString}</small>
@@ -42,7 +42,6 @@ function renderPokemon() {
         
     }
 }
-
 
 function renderPokemonTypes(i, pokemon) {
     let content = document.getElementById(`pokemon-types${i}`);
@@ -63,14 +62,22 @@ function chooseBackgroundColor(i, pokemon) {
 }
 
 
-function openPokemonCard() {
+function openPopupCard(i) {
    let element = document.getElementById('card-container');
     element.classList.remove('d-none');
+    contentPopupCard(i);
+}
+
+function contentPopupCard(i) {
+    document.getElementById('card-container').innerHTML = /*html*/ `
+        <h2>NAME</h2>
+    `;
 }
 
 
-function closePokemonCard() {
+function closePopupCard() {
     let element = document.getElementById('card-container');
     element.classList.add('d-none');
+    
 }
 
