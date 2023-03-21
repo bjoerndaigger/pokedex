@@ -39,7 +39,7 @@ function renderPokemon() {
         `;
         renderPokemonTypes(i, pokemon);
         chooseBackgroundColor(i, pokemon);
-        
+
     }
 }
 
@@ -63,21 +63,31 @@ function chooseBackgroundColor(i, pokemon) {
 
 
 function openPopupCard(i) {
-   let element = document.getElementById('card-container');
+    let element = document.getElementById('card-container');
     element.classList.remove('d-none');
     contentPopupCard(i);
 }
 
-function contentPopupCard(i) {
-    document.getElementById('card-container').innerHTML = /*html*/ `
-        <h2>NAME</h2>
-    `;
-}
-
-
 function closePopupCard() {
     let element = document.getElementById('card-container');
     element.classList.add('d-none');
-    
+
 }
+
+function contentPopupCard(i) {
+    document.getElementById('card-container').innerHTML = /*html*/ `
+        <div class="pokemon-card">
+            <div class="name-container">
+                <h2 class="text-capitalize">${pokemonData[i]['name']}</h2>
+            </div>
+            <div class="info-container">
+                <img class="pokemon-card-img" src="${pokemonData[i]['sprites']['other']['official-artwork']['front_default']}">
+            </div>
+        </div>
+    `;
+
+}
+
+
+
 
