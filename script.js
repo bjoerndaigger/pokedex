@@ -38,7 +38,7 @@ function renderPokemon() {
             </div>
         `;
         renderPokemonTypes(i, pokemon);
-        chooseBackgroundColor(i, pokemon);
+        chooseBackgroundColor(i);
 
     }
 }
@@ -55,10 +55,9 @@ function renderPokemonTypes(i, pokemon) {
 }
 
 
-function chooseBackgroundColor(i, pokemon) {
-    let type = pokemon['types'][0]['type']['name'];
+function chooseBackgroundColor(i) {
+    let type = pokemonData[i]['types'][0]['type']['name'];
     document.getElementById(`frame${i}`).classList.add(type);
-
 }
 
 
@@ -77,7 +76,7 @@ function closePopupCard() {
 function contentPopupCard(i) {
     document.getElementById('card-container').innerHTML = /*html*/ `
         <div class="pokemon-card">
-            <div class="name-container">
+            <div id="pokemon-card${i}" class="name-container">
                 <h2 class="text-capitalize">${pokemonData[i]['name']}</h2>
             </div>
             <div class="info-container">
@@ -85,7 +84,12 @@ function contentPopupCard(i) {
             </div>
         </div>
     `;
+    chooseBackgroundColorPopupCard(i);
+}
 
+function chooseBackgroundColorPopupCard(i) {
+    let type = pokemonData[i]['types'][0]['type']['name'];
+    document.getElementById(`pokemon-card${i}`).classList.add(type);
 }
 
 
