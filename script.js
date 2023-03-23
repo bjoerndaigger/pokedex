@@ -1,8 +1,10 @@
 let pokemonData = []; // globale Variable die JSON von API aufruft
+let loadedPokemon = 1
+let pokemonAmount = 11;
 
 
 async function loadPokemon() {
-    for (let i = 1; i < 11; i++) {
+    for (let i = loadedPokemon; i < pokemonAmount; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}/`; // URL der API
         let response = await fetch(url); // Aufruf an Server und Abruf der Daten
         let pokemon = await response.json(); // umwandeln der Textdaten ins JSON-Format
@@ -11,6 +13,12 @@ async function loadPokemon() {
     }
 }
 
+
+function loadMorePokemoon() {
+    loadedPokemon + 10;
+    pokemonAmount + 10;
+    loadPokemon();
+}
 
 function renderPokemon() {
     let content = document.getElementById('pokemon');
@@ -52,6 +60,10 @@ function renderPokemonTypes(i, pokemon) {
         <div class="text-capitalize type-field rounded-5 mb-1">${types}</div>
     `;
     }
+}
+
+function renderPopupCard() {
+
 }
 
 
