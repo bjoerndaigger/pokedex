@@ -17,8 +17,9 @@ async function loadPokemon() {
 function loadMorePokemoon() {
     loadedPokemon + 10;
     pokemonAmount + 10;
-    loadPokemon();
+    console.log(loadedPokemon, pokemonAmount);
 }
+
 
 function renderPokemon() {
     let content = document.getElementById('pokemon');
@@ -32,9 +33,8 @@ function renderPokemon() {
         let idAsString = id.toString().padStart(3, '0');
         let image = pokemon['sprites']['other']['official-artwork']['front_default'];
 
-
         content.innerHTML += /*html*/ `
-            <div id="frame${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i})"> 
+            <div id="pokemon${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i})"> 
                 <div class="d-flex justify-content-between">
                     <h2 class="text-capitalize">${name}</h2>
                     <small class="fw-bold">#${idAsString}</small>
@@ -45,31 +45,28 @@ function renderPokemon() {
                 </div>
             </div>
         `;
-        renderPokemonTypes(i, pokemon);
-        chooseBackgroundColor(i);
-
+        renderPokemonTypes(i);
+        getBackgroundColor(i);
     }
 }
 
-function renderPokemonTypes(i, pokemon) {
-    let content = document.getElementById(`pokemon-types${i}`);
-    for (let i = 0; i < pokemon['types'].length; i++) {
-        const types = pokemon['types'][i]['type']['name'];
 
+function renderPokemonTypes(i) {
+    let pokemon = pokemonData[i];
+    let content = document.getElementById(`pokemon-types${i}`);
+
+    let types = getTypes(pokemon);
+    for (let i = 0; i < types.length; i++) {
         content.innerHTML += `
-        <div class="text-capitalize type-field rounded-5 mb-1">${types}</div>
+        <div class="text-capitalize type-field rounded-5 mb-1">${types[i]}</div>
     `;
     }
 }
 
-function renderPopupCard() {
 
-}
-
-
-function chooseBackgroundColor(i) {
-    let type = pokemonData[i]['types'][0]['type']['name'];
-    document.getElementById(`frame${i}`).classList.add(type);
+function getBackgroundColor(i) {
+    let color = pokemonData[i]['types'][0]['type']['name'];
+    document.getElementById(`pokemon${i}`).classList.add(color);
 }
 
 
@@ -79,31 +76,62 @@ function openPopupCard(i) {
     contentPopupCard(i);
 }
 
+
+function contentPopupCard(i) {
+    let pokemon = pokemonData[i];
+    let name = pokemon['name'];
+    let id = pokemon['id'];
+    let idAsString = id.toString().padStart(3, '0');
+    let image = pokemon['sprites']['other']['official-artwork']['front_default'];
+
+    document.getElementById('card-container').innerHTML = /*html*/ `
+        <div class="pokemon-card">
+            <div id="pokemon-card${i}" class="name-container">
+                <h2 class="text-capitalize">${name}</h2>
+                <small class="fw-bold">#${idAsString}</small>
+                <div id="pokecard-types${i}" class="d-flex"></div>
+            </div>
+            <div class="info-container">
+                <img class="pokemon-card-img" src="${image}">
+            </div>
+        </div>
+    `;
+    typesPopupCard(i);
+    getBackgroundColorPopupCard(i);
+}
+
+
+function typesPopupCard(i) {
+    let pokemon = pokemonData[i];
+    let content = document.getElementById(`pokecard-types${i}`);
+
+    let types = getTypes(pokemon);
+    for (let i = 0; i < types.length; i++) {
+        content.innerHTML += `
+        <div class="text-capitalize type-field rounded-5 mb-1">${types[i]}</div>
+    `;
+    }
+}
+
+
+function getBackgroundColorPopupCard(i) {
+    let color = pokemonData[i]['types'][0]['type']['name'];
+    document.getElementById(`pokemon-card${i}`).classList.add(color);
+}
+
+
+function getTypes(pokemon) {
+    let types = [];
+    for (let i = 0; i < pokemon['types'].length; i++) {
+        types.push(pokemon['types'][i]['type']['name']);
+    }
+    return types;
+}
+
+
 function closePopupCard() {
     let element = document.getElementById('card-container');
     element.classList.add('d-none');
 
 }
-
-function contentPopupCard(i) {
-    document.getElementById('card-container').innerHTML = /*html*/ `
-        <div class="pokemon-card">
-            <div id="pokemon-card${i}" class="name-container">
-                <h2 class="text-capitalize">${pokemonData[i]['name']}</h2>
-            </div>
-            <div class="info-container">
-                <img class="pokemon-card-img" src="${pokemonData[i]['sprites']['other']['official-artwork']['front_default']}">
-            </div>
-        </div>
-    `;
-    chooseBackgroundColorPopupCard(i);
-}
-
-function chooseBackgroundColorPopupCard(i) {
-    let type = pokemonData[i]['types'][0]['type']['name'];
-    document.getElementById(`pokemon-card${i}`).classList.add(type);
-}
-
-
-
 
