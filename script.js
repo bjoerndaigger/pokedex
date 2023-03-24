@@ -83,6 +83,11 @@ function contentPopupCard(i) {
     let id = pokemon['id'];
     let idAsString = id.toString().padStart(3, '0');
     let image = pokemon['sprites']['other']['official-artwork']['front_default'];
+    let height = pokemon['height'] / 10;
+    let weight = pokemon['weight'] / 10;
+    let ability1 = pokemon['abilities'][0]['ability']['name'];
+    let ability2 = pokemon['abilities'][1]['ability']['name'];
+
 
     document.getElementById('card-container').innerHTML = /*html*/ `
         <div class="pokemon-card">
@@ -90,12 +95,27 @@ function contentPopupCard(i) {
                 <img class="close-btn" src="./img/close-btn.png">
             <div class="d-flex justify-content-between">
                     <h2 class="text-capitalize">${name}</h2>
-                    <small class="fw-bold">#${idAsString}</small>
+                    <span class="fw-bold">#${idAsString}</span>
                 </div>
                 <div id="pokecard-types${i}" class="d-flex"></div>
             </div>
-            <div class="info-container">
+            <div class="info-container d-flex flex-column justify-content-start align-items-center">
                 <img class="pokemon-card-img" src="${image}">
+                <table class="table fw-bold">
+	                <tr>
+		                <td class="text-secondary">Height</td>
+		                <td>${height} m</td>				
+	                </tr>
+                    <tr>
+		                <td class="text-secondary">Weight</td>
+		                <td>${weight} kg</td>				
+	                </tr>
+                    <tr>
+		                <td class="text-secondary">Abilities</td>
+		                <td class="text-capitalize">${ability1}, ${ability2}</td>				
+	                </tr>
+                </table>
+                
             </div>
         </div>
     `;
@@ -111,7 +131,7 @@ function typesPopupCard(i) {
     let types = getTypes(pokemon);
     for (let i = 0; i < types.length; i++) {
         content.innerHTML += `
-        <div class="text-capitalize type-field rounded-5 mb-1">${types[i]}</div>
+        <div class="text-capitalize type-field rounded-5">${types[i]}</div>
     `;
     }
 }
