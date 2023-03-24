@@ -6,6 +6,7 @@ h2 {
 
 .pokemon-container {
     width: 250px;
+    cursor: pointer;
 }
 
 .type-field {
@@ -106,11 +107,13 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .pokemon-card {
     width: 360px;
     height: 720px;
+    margin-bottom: -75px;
 }
 
 .name-container {
@@ -119,6 +122,12 @@ h2 {
     padding: 24px;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
+}
+
+.close-btn {
+    filter: invert(1);
+    height: 32px;
+    margin-bottom: 8px;
 }
 
 .info-container {

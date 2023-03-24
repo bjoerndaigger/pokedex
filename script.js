@@ -87,8 +87,11 @@ function contentPopupCard(i) {
     document.getElementById('card-container').innerHTML = /*html*/ `
         <div class="pokemon-card">
             <div id="pokemon-card${i}" class="name-container">
-                <h2 class="text-capitalize">${name}</h2>
-                <small class="fw-bold">#${idAsString}</small>
+                <img class="close-btn" src="./img/close-btn.png">
+            <div class="d-flex justify-content-between">
+                    <h2 class="text-capitalize">${name}</h2>
+                    <small class="fw-bold">#${idAsString}</small>
+                </div>
                 <div id="pokecard-types${i}" class="d-flex"></div>
             </div>
             <div class="info-container">
