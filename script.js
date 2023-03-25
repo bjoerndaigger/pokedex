@@ -26,12 +26,11 @@ function renderPokemon() {
     content.innerHTML = '';
 
     for (let i = 0; i < pokemonData.length; i++) {
-        const pokemon = pokemonData[i];
 
-        let name = pokemon['name'];
-        let id = pokemon['id'];
+        let name = pokemonData[i]['name'];
+        let id = pokemonData[i]['id'];
         let idAsString = id.toString().padStart(3, '0');
-        let image = pokemon['sprites']['other']['official-artwork']['front_default'];
+        let image = pokemonData[i]['sprites']['other']['official-artwork']['front_default'];
 
         content.innerHTML += /*html*/ `
             <div id="pokemon${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i})"> 
@@ -78,21 +77,16 @@ function openPopupCard(i) {
 
 
 function contentPopupCard(i) {
-    let pokemon = pokemonData[i];
-    let name = pokemon['name'];
-    let id = pokemon['id'];
+    let name = pokemonData[i]['name'];
+    let id = pokemonData[i]['id'];
     let idAsString = id.toString().padStart(3, '0');
-    let image = pokemon['sprites']['other']['official-artwork']['front_default'];
-    let height = pokemon['height'] / 10;
-    let weight = pokemon['weight'] / 10;
-    let ability1 = pokemon['abilities'][0]['ability']['name'];
-    let ability2 = pokemon['abilities'][1]['ability']['name'];
+    let image = pokemonData[i]['sprites']['other']['official-artwork']['front_default'];
 
 
     document.getElementById('card-container').innerHTML = /*html*/ `
         <div class="pokemon-card">
             <div id="pokemon-card${i}" class="name-container">
-                <img class="close-btn" src="./img/close-btn.png">
+                <img class="close-btn" src="./img/close-btn.png" onclick="closePopupCard()">
             <div class="d-flex justify-content-between">
                     <h2 class="text-capitalize">${name}</h2>
                     <span class="fw-bold">#${idAsString}</span>
@@ -101,26 +95,59 @@ function contentPopupCard(i) {
             </div>
             <div class="info-container d-flex flex-column justify-content-start align-items-center">
                 <img class="pokemon-card-img" src="${image}">
-                <table class="table fw-bold">
-	                <tr>
-		                <td class="text-secondary">Height</td>
-		                <td>${height} m</td>				
-	                </tr>
-                    <tr>
-		                <td class="text-secondary">Weight</td>
-		                <td>${weight} kg</td>				
-	                </tr>
-                    <tr>
-		                <td class="text-secondary">Abilities</td>
-		                <td class="text-capitalize">${ability1}, ${ability2}</td>				
-	                </tr>
-                </table>
-                
+                <nav class="navbar navbar-expand-lg">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" onclick="showAbout(${i})">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" onclick="showStats(${i})">Stats</a>
+                            </li>
+                        </ul>  
+                </nav>
+                <div id="more-details">
+                </div>
             </div>
         </div>
     `;
     typesPopupCard(i);
     getBackgroundColorPopupCard(i);
+    showAbout(i);
+}
+
+function showAbout(i) {
+    let content = document.getElementById('more-details');
+    content.innerHTML = '';
+
+    let height = pokemonData[i]['height'] / 10;
+    let weight = pokemonData[i]['weight'] / 10;
+    let ability1 = pokemonData[i]['abilities'][0]['ability']['name'];
+    let ability2 = pokemonData[i]['abilities'][1]['ability']['name'];
+
+    content.innerHTML += /*html*/`
+        <table class="table fw-bold">
+	        <tr>
+		        <td class="text-secondary">Height</td>
+		        <td>${height} m</td>				
+	        </tr>
+            <tr>
+		        <td class="text-secondary">Weight</td>
+		        <td>${weight} kg</td>				
+	        </tr>
+            <tr>
+		        <td class="text-secondary">Abilities</td>
+		        <td class="text-capitalize">${ability1}, ${ability2}</td>				
+	        </tr>
+        </table>
+    `;
+}
+
+function showStats(i) {
+    let content = document.getElementById('more-details');
+    content.innerHTML = '';
+    content.innerHTML += /*html*/`
+        ProgressBar
+    `;
 }
 
 

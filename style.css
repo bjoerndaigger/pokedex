@@ -107,7 +107,6 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 }
 
 .pokemon-card {
@@ -128,6 +127,7 @@ h2 {
     filter: invert(1);
     height: 32px;
     margin-bottom: 8px;
+    cursor: pointer;
 
 }
 
