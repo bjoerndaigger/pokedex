@@ -95,16 +95,11 @@ function contentPopupCard(i) {
             </div>
             <div class="info-container d-flex flex-column justify-content-start align-items-center">
                 <img class="pokemon-card-img" src="${image}">
-                <nav class="navbar navbar-expand-lg">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" onclick="showAbout(${i})">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" onclick="showStats(${i})">Stats</a>
-                            </li>
-                        </ul>  
-                </nav>
+
+                <div class="d-flex justify-content-between w-50 p-2"> 
+                    <a id="pokemon-card-nav-link-1" class="pokemon-card-nav text-secondary fw-bold" href="javascript:void(0);" onclick="showAbout(${i})">About</a>       
+                    <a id="pokemon-card-nav-link-2" class="pokemon-card-nav text-secondary fw-bold" href="javascript:void(0);" onclick="showStats(${i})">Stats</a> 
+                </div>
                 <div id="more-details">
                 </div>
             </div>
@@ -116,6 +111,9 @@ function contentPopupCard(i) {
 }
 
 function showAbout(i) {
+    document.getElementById('pokemon-card-nav-link-2').classList.remove('text-dark');
+    document.getElementById('pokemon-card-nav-link-1').classList.add('text-dark');
+
     let content = document.getElementById('more-details');
     content.innerHTML = '';
 
@@ -143,6 +141,9 @@ function showAbout(i) {
 }
 
 function showStats(i) {
+    document.getElementById('pokemon-card-nav-link-1').classList.remove('text-dark');
+    document.getElementById('pokemon-card-nav-link-2').classList.add('text-dark');
+
     let content = document.getElementById('more-details');
     content.innerHTML = '';
     content.innerHTML += /*html*/`

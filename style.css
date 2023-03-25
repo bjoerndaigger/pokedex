@@ -146,3 +146,14 @@ h2 {
     margin-top: -150px;
 }
 
+.pokemon-card-nav {
+    text-decoration: none;
+}
+
+  .pokemon-card-nav:hover {
+    text-decoration-line: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+    transition: all 225ms ease-in-out;
+  }
+  
