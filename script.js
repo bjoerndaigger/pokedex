@@ -1,10 +1,10 @@
 let pokemonData = []; // globale Variable die JSON von API aufruft
-let loadedPokemon = 1
-let pokemonAmount = 11;
+let startLoading = 1
+let endLoading = 11;
 
 
 async function loadPokemon() {
-    for (let i = loadedPokemon; i < pokemonAmount; i++) {
+    for (let i = startLoading; i < endLoading; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}/`; // URL der API
         let response = await fetch(url); // Aufruf an Server und Abruf der Daten
         let pokemon = await response.json(); // umwandeln der Textdaten ins JSON-Format
@@ -14,10 +14,10 @@ async function loadPokemon() {
 }
 
 
-function loadMorePokemoon() {
-    loadedPokemon + 10;
-    pokemonAmount + 10;
-    console.log(loadedPokemon, pokemonAmount);
+function loadMorePokemon() {
+    startLoading = endLoading;
+    endLoading = endLoading + 11;
+    loadPokemon();
 }
 
 
@@ -164,7 +164,7 @@ function showStats(i) {
                 <td class="text-secondary small">HP</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${hp / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${hp}</div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${hp / 150 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${hp}</div>
                     </div>
                 </td>				
             </tr>
@@ -172,7 +172,7 @@ function showStats(i) {
                 <td class="text-secondary small">Attack</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: ${attack / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${attack}</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: ${attack / 150 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${attack}</div>
                     </div>
                 </td>				
             </tr>
@@ -180,7 +180,7 @@ function showStats(i) {
                 <td class="text-secondary small">Defense</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${defense / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${defense}</div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${defense / 150 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${defense}</div>
                     </div>
                 </td>				
             </tr>
@@ -188,7 +188,7 @@ function showStats(i) {
                 <td class="text-secondary small">Sp. Atk</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: ${specialAttack / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${specialAttack}</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: ${specialAttack / 150 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${specialAttack}</div>
                     </div>
                 </td>				
             </tr>
@@ -196,7 +196,7 @@ function showStats(i) {
                 <td class="text-secondary small">Sp. Def</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: ${specialDefense / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${specialDefense}</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: ${specialDefense / 150 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${specialDefense}</div>
                     </div>
                 </td>				
             </tr>
@@ -204,7 +204,7 @@ function showStats(i) {
                 <td class="text-secondary small">Speed</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${speed / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${speed}</div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${speed / 150 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${speed}</div>
                     </div>
                 </td>				
             </tr>
