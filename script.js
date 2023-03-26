@@ -36,7 +36,7 @@ function renderPokemon() {
             <div id="pokemon${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i})"> 
                 <div class="d-flex justify-content-between">
                     <h2 class="text-capitalize">${name}</h2>
-                    <small class="fw-bold">#${idAsString}</small>
+                    <span class="fw-bold small">#${idAsString}</span>
                 </div>
                 <div class="d-flex flex-row justify-content-between">
                     <div id="pokemon-types${i}"></div>
@@ -100,7 +100,7 @@ function contentPopupCard(i) {
                     <a id="pokemon-card-nav-link-1" class="pokemon-card-nav text-secondary fw-bold" href="javascript:void(0);" onclick="showAbout(${i})">About</a>       
                     <a id="pokemon-card-nav-link-2" class="pokemon-card-nav text-secondary fw-bold" href="javascript:void(0);" onclick="showStats(${i})">Stats</a> 
                 </div>
-                <div id="more-details">
+                <div id="more-details" class="w-100">
                 </div>
             </div>
         </div>
@@ -151,10 +151,61 @@ function showStats(i) {
     let specialDefense = pokemonData[i]['stats'][4]['base_stat'];
     let speed = pokemonData[i]['stats'][5]['base_stat'];
 
-    console.log(hp, attack, defense, specialAttack, specialDefense, speed);
-
     let content = document.getElementById('more-details');
     content.innerHTML = '';
+
+    content.innerHTML += /*html*/`
+        <table class="table">
+            <tr>
+                <td class="text-secondary small">HP</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${hp}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${hp}</div>
+                    </div>
+                </td>				
+            </tr>
+            <tr>
+                <td class="text-secondary small">Attack</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: ${attack}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${attack}</div>
+                    </div>
+                </td>				
+            </tr>
+            <tr>
+                <td class="text-secondary small">Defense</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${defense}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${defense}</div>
+                    </div>
+                </td>				
+            </tr>
+            <tr>
+                <td class="text-secondary small">Sp. Atk</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: ${specialAttack}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${specialAttack}</div>
+                    </div>
+                </td>				
+            </tr>
+            <tr>
+                <td class="text-secondary small">Sp. Def</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: ${specialDefense}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${specialDefense}</div>
+                    </div>
+                </td>				
+            </tr>
+            <tr>
+                <td class="text-secondary small">Speed</td>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${speed}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${speed}</div>
+                    </div>
+                </td>				
+            </tr>
+        </table>
+    `;
 }
 
 

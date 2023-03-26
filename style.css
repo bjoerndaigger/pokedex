@@ -116,7 +116,7 @@ h2 {
 }
 
 .name-container {
-    height: 50%;
+    height: 45%;
     color: white;
     padding: 24px;
     border-top-left-radius: 40px;
@@ -132,7 +132,7 @@ h2 {
 }
 
 .info-container {
-    height: 50%;
+    height: 55%;
     background-color: white;
     border-radius: 40px;
     margin-top: -40px;
@@ -150,10 +150,17 @@ h2 {
     text-decoration: none;
 }
 
-  .pokemon-card-nav:hover {
+.pokemon-card-nav:hover {
     text-decoration-line: underline;
     text-decoration-thickness: 3px;
     text-underline-offset: 4px;
     transition: all 225ms ease-in-out;
-  }
-  
+}
+
+td:first-child {
+    width: 100px;
+}
+
+.progress {
+    margin-top: 3px;
+}
