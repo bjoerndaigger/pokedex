@@ -164,7 +164,7 @@ function showStats(i) {
                 <td class="text-secondary small">HP</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${hp}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${hp}</div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${hp / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${hp}</div>
                     </div>
                 </td>				
             </tr>
@@ -172,7 +172,7 @@ function showStats(i) {
                 <td class="text-secondary small">Attack</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: ${attack}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${attack}</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: ${attack / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${attack}</div>
                     </div>
                 </td>				
             </tr>
@@ -180,7 +180,7 @@ function showStats(i) {
                 <td class="text-secondary small">Defense</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${defense}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${defense}</div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${defense / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${defense}</div>
                     </div>
                 </td>				
             </tr>
@@ -188,7 +188,7 @@ function showStats(i) {
                 <td class="text-secondary small">Sp. Atk</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: ${specialAttack}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${specialAttack}</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: ${specialAttack / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${specialAttack}</div>
                     </div>
                 </td>				
             </tr>
@@ -196,7 +196,7 @@ function showStats(i) {
                 <td class="text-secondary small">Sp. Def</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: ${specialDefense}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${specialDefense}</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: ${specialDefense / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${specialDefense}</div>
                     </div>
                 </td>				
             </tr>
@@ -204,7 +204,7 @@ function showStats(i) {
                 <td class="text-secondary small">Speed</td>
                 <td>
                     <div class="progress">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${speed}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${speed}</div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${speed / 120 * 100}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${speed}</div>
                     </div>
                 </td>				
             </tr>
