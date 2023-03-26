@@ -87,11 +87,15 @@ function contentPopupCard(i) {
         <div class="pokemon-card">
             <div id="pokemon-card${i}" class="name-container">
                 <img class="close-btn" src="./img/close-btn.png" onclick="closePopupCard()">
-            <div class="d-flex justify-content-between">
-                    <h2 class="text-capitalize">${name}</h2>
-                    <span class="fw-bold">#${idAsString}</span>
+                    <div class="d-flex justify-content-between">
+                        <h2 class="text-capitalize">${name}</h2>
+                        <span class="fw-bold">#${idAsString}</span>
+                    </div>
+                    <div id="pokecard-types${i}" class="d-flex"></div>
+                <div class="d-flex justify-content-between">
+                    <img class="back-btn" src="./img/arrow-back.png">
+                    <img class="forward-btn" src="./img/arrow-forward.png">
                 </div>
-                <div id="pokecard-types${i}" class="d-flex"></div>
             </div>
             <div class="info-container d-flex flex-column justify-content-start align-items-center">
                 <img class="pokemon-card-img" src="${image}">

@@ -123,14 +123,21 @@ h2 {
     border-top-right-radius: 40px;
 }
 
-.close-btn {
+.close-btn, .back-btn, .forward-btn {
     filter: invert(1);
-    height: 32px;
     margin-bottom: 8px;
     cursor: pointer;
-
 }
 
+.close-btn {
+    height: 32px;
+}
+
+.back-btn, .forward-btn {
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: 80px;
+}
 .info-container {
     height: 55%;
     background-color: white;
