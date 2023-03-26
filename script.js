@@ -144,11 +144,17 @@ function showStats(i) {
     document.getElementById('pokemon-card-nav-link-1').classList.remove('text-dark');
     document.getElementById('pokemon-card-nav-link-2').classList.add('text-dark');
 
+    let hp = pokemonData[i]['stats'][0]['base_stat'];
+    let attack = pokemonData[i]['stats'][1]['base_stat'];
+    let defense = pokemonData[i]['stats'][2]['base_stat'];
+    let specialAttack = pokemonData[i]['stats'][3]['base_stat'];
+    let specialDefense = pokemonData[i]['stats'][4]['base_stat'];
+    let speed = pokemonData[i]['stats'][5]['base_stat'];
+
+    console.log(hp, attack, defense, specialAttack, specialDefense, speed);
+
     let content = document.getElementById('more-details');
     content.innerHTML = '';
-    content.innerHTML += /*html*/`
-        ProgressBar
-    `;
 }
 
 
