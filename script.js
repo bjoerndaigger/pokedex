@@ -117,8 +117,12 @@ function showAbout(i) {
     let content = document.getElementById('more-details');
     content.innerHTML = '';
 
-    let height = pokemonData[i]['height'] / 10;
-    let weight = pokemonData[i]['weight'] / 10;
+    let height = pokemonData[i]['height'];
+    height = height / 10;
+    height = height.toString().replace('.', ',');
+    let weight = pokemonData[i]['weight'];
+    weight = weight / 10;
+    weight = weight.toString().replace('.', ',');
     let ability1 = pokemonData[i]['abilities'][0]['ability']['name'];
     let ability2 = pokemonData[i]['abilities'][1]['ability']['name'];
 
