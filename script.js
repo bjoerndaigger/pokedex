@@ -1,6 +1,6 @@
 let pokemonData = []; // globale Variable die JSON von API aufruft
 let startLoading = 1
-let endLoading = 11;
+let endLoading = 21;
 
 
 async function loadPokemon() {
@@ -127,8 +127,6 @@ function showAbout(i) {
     let weight = pokemonData[i]['weight'];
     weight = weight / 10;
     weight = weight.toString().replace('.', ',');
-    let ability1 = pokemonData[i]['abilities'][0]['ability']['name'];
-    let ability2 = pokemonData[i]['abilities'][1]['ability']['name'];
 
     content.innerHTML += /*html*/`
         <table class="table fw-bold">
@@ -142,10 +140,26 @@ function showAbout(i) {
 	        </tr>
             <tr>
 		        <td class="text-secondary">Abilities</td>
-		        <td class="text-capitalize">${ability1}, ${ability2}</td>				
+		        <td id="abilities" class="text-capitalize"></td>				
 	        </tr>
         </table>
     `;
+    getAbilities(i);
+}
+
+function getAbilities(i) {
+    let content = document.getElementById('abilities');
+    content.innerHTML = '';
+
+    for (let j = 0; j < pokemonData[i]['abilities'].length; j++) {
+        const abilities = pokemonData[i]['abilities'][j];
+        
+        content.innerHTML += `
+            ${abilities['ability']['name']}
+        `;
+        
+    }
+
 }
 
 function showStats(i) {
