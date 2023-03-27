@@ -22,9 +22,20 @@ function loadMorePokemon() {
 
 
 function pokemonSearch() {
-    let input = document.getElementById('search-input').value;
-    console.log(input);
+    let search = document.getElementById('search-input').value;
+    search = search.toLowerCase();
+    console.log(search);
+
+    for (let i = 0; i < pokemonData.length; i++) {
+            const result = pokemonData[i]['name'];
+
+            if (result.toLowerCase().includes(search)) {
+                console.log('Yes');
+            }
+    }
+
     document.getElementById('search-input').value = '';
+   
 }
 
 function renderPokemon() {
