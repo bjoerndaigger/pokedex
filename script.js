@@ -21,6 +21,12 @@ function loadMorePokemon() {
 }
 
 
+function pokemonSearch() {
+    let input = document.getElementById('search-input').value;
+    console.log(input);
+    document.getElementById('search-input').value = '';
+}
+
 function renderPokemon() {
     let content = document.getElementById('pokemon');
     content.innerHTML = '';
