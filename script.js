@@ -93,8 +93,8 @@ function contentPopupCard(i) {
                     </div>
                     <div id="pokecard-types${i}" class="d-flex"></div>
                 <div class="d-flex justify-content-between">
-                    <img class="back-btn" src="./img/arrow-back.png">
-                    <img class="forward-btn" src="./img/arrow-forward.png">
+                    <img id="back-btn" class="back-btn" src="./img/arrow-back.png" onclick="previousPokemon(${i})">
+                    <img id="forward-btn" class="forward-btn" src="./img/arrow-forward.png" onclick="nextPokemon(${i})">
                 </div>
             </div>
             <div class="info-container d-flex flex-column justify-content-start align-items-center">
@@ -244,6 +244,31 @@ function getTypes(pokemon) {
     return types;
 }
 
+
+function previousPokemon(i) {
+    if (i == 0) {
+        document.getElementById('card-container').innerHTML = ``;
+        i = pokemonData.length - 1; 
+        openPopupCard(i);
+    } else { 
+        i--;
+        document.getElementById('card-container').innerHTML = ``;
+        openPopupCard(i);
+    }
+}
+
+function nextPokemon(i) {
+    if (i == pokemonData.length - 1) {
+        document.getElementById('card-container').innerHTML = '';
+        i = 0;
+        openPopupCard(i);
+    
+    } else {
+        i++;
+        document.getElementById('card-container').innerHTML = '';
+        openPopupCard(i);
+    }
+}
 
 function closePopupCard() {
     let element = document.getElementById('card-container');
