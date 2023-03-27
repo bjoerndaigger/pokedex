@@ -16,7 +16,7 @@ async function loadPokemon() {
 
 function loadMorePokemon() {
     startLoading = endLoading;
-    endLoading = endLoading + 11;
+    endLoading = endLoading + 10;
     loadPokemon();
 }
 
@@ -152,10 +152,10 @@ function getAbilities(i) {
     content.innerHTML = '';
 
     for (let j = 0; j < pokemonData[i]['abilities'].length; j++) {
-        const abilities = pokemonData[i]['abilities'][j];
+        const abilities = pokemonData[i]['abilities'][j]['ability']['name'];
         
         content.innerHTML += `
-            ${abilities['ability']['name']}
+            <div>${abilities}</div>
         `;
         
     }
@@ -238,7 +238,7 @@ function typesPopupCard(i) {
     let types = getTypes(pokemon);
     for (let i = 0; i < types.length; i++) {
         content.innerHTML += `
-        <div class="text-capitalize type-field rounded-5">${types[i]}</div>
+        <div class="text-capitalize type-field rounded-5 type-field-popup">${types[i]}</div>
     `;
     }
 }
