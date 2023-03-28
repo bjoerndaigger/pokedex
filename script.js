@@ -27,15 +27,15 @@ function pokemonSearch() {
     console.log(search);
 
     for (let i = 0; i < pokemonData.length; i++) {
-            const result = pokemonData[i]['name'];
+        const result = pokemonData[i]['name'];
 
-            if (result.toLowerCase().includes(search)) {
-                console.log('Yes');
-            }
+        if (result.toLowerCase().includes(search)) {
+            console.log('Yes');
+        }
     }
 
     document.getElementById('search-input').value = '';
-   
+
 }
 
 function renderPokemon() {
@@ -43,27 +43,30 @@ function renderPokemon() {
     content.innerHTML = '';
 
     for (let i = 0; i < pokemonData.length; i++) {
-
-        let name = pokemonData[i]['name'];
-        let id = pokemonData[i]['id'];
-        let idAsString = id.toString().padStart(3, '0');
-        let image = pokemonData[i]['sprites']['other']['official-artwork']['front_default'];
-
-        content.innerHTML += /*html*/ `
-            <div id="pokemon${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i})"> 
-                <div class="d-flex justify-content-between">
-                    <h2 class="text-capitalize">${name}</h2>
-                    <span class="fw-bold small">#${idAsString}</span>
-                </div>
-                <div class="d-flex flex-row justify-content-between">
-                    <div id="pokemon-types${i}"></div>
-                    <img class="pokemon-img" src="${image}"> 
-                </div>
-            </div>
-        `;
+        content.innerHTML += htmlRenderPokemon(i);
         renderPokemonTypes(i);
         getBackgroundColor(i);
     }
+}
+
+function htmlRenderPokemon(i) {
+    let name = pokemonData[i]['name'];
+    let id = pokemonData[i]['id'];
+    let idAsString = id.toString().padStart(3, '0');
+    let image = pokemonData[i]['sprites']['other']['official-artwork']['front_default'];
+
+    return /*html*/ `
+        <div id="pokemon${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i})"> 
+    <div class="d-flex justify-content-between">
+        <h2 class="text-capitalize">${name}</h2>
+        <span class="fw-bold small">#${idAsString}</span>
+    </div>
+    <div class="d-flex flex-row justify-content-between">
+        <div id="pokemon-types${i}"></div>
+        <img class="pokemon-img" src="${image}"> 
+    </div>
+        </div>
+`;
 }
 
 
@@ -170,11 +173,11 @@ function getAbilities(i) {
 
     for (let j = 0; j < pokemonData[i]['abilities'].length; j++) {
         const abilities = pokemonData[i]['abilities'][j]['ability']['name'];
-        
+
         content.innerHTML += `
             <div>${abilities}</div>
         `;
-        
+
     }
 
 }
@@ -279,9 +282,9 @@ function getTypes(pokemon) {
 function previousPokemon(i) {
     if (i == 0) {
         document.getElementById('card-container').innerHTML = ``;
-        i = pokemonData.length - 1; 
+        i = pokemonData.length - 1;
         openPopupCard(i);
-    } else { 
+    } else {
         i--;
         document.getElementById('card-container').innerHTML = ``;
         openPopupCard(i);
@@ -293,7 +296,7 @@ function nextPokemon(i) {
         document.getElementById('card-container').innerHTML = '';
         i = 0;
         openPopupCard(i);
-    
+
     } else {
         i++;
         document.getElementById('card-container').innerHTML = '';
