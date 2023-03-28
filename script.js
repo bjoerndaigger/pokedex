@@ -24,18 +24,25 @@ function loadMorePokemon() {
 function pokemonSearch() {
     let search = document.getElementById('search-input').value;
     search = search.toLowerCase();
-    console.log(search);
 
     for (let i = 0; i < pokemonData.length; i++) {
         const result = pokemonData[i]['name'];
 
         if (result.toLowerCase().includes(search)) {
-            console.log('Yes');
+            console.log(result);
+
+            let content = document.getElementById('pokemon');
+            content.innerHTML = '';
+        
+            for (let i = 0; i < result.length; i++) {
+                content.innerHTML += htmlRenderPokemon(i);
+                renderPokemonTypes(i);
+                getBackgroundColor(i);
+            }
         }
     }
-
+    
     document.getElementById('search-input').value = '';
-
 }
 
 function renderPokemon() {
