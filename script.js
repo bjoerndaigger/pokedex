@@ -1,5 +1,5 @@
 let pokemonData = []; // globale Variable die JSON von API aufruft
-let selectedPokemon = [];
+let selectedPokemon = []; // JSON Ergebnisse von Pokemon Search-Funktion
 let startLoading = 1
 let endLoading = 11;
 
@@ -24,19 +24,19 @@ function loadMorePokemon() {
 function pokemonSearch() {
     let search = document.getElementById('search-input').value;
     search = search.toLowerCase();
+    let content = document.getElementById('pokemon');
+    content.innerHTML = '';
 
     for (let i = 0; i < pokemonData.length; i++) {
-        const result = pokemonData[i]['name'];
-
-        if (result.toLowerCase().includes(search)) {
-            console.log(result);
+        const result = pokemonData[i];
+        if (result['name'].toLowerCase().includes(search)) {
             selectedPokemon.push(result);
         }
     }
 }
 
 
-function renderPokemon() {
+function renderPokemon(i) {
     let content = document.getElementById('pokemon');
     content.innerHTML = '';
 
