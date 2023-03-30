@@ -59,9 +59,27 @@ function renderSearchPokemon() {
                 </div>
             </div>
         `;
-        renderPokemonTypes(i);
-        getBackgroundColor(i);
+        renderSearchPokemonTypes(i);
+        getSearchPokemonBackgroundColor(i);
     }
+}
+
+function renderSearchPokemonTypes(i) {
+    let content = document.getElementById(`pokemon-types${i}`);
+    let pokemon = selectedPokemon[i];
+    for (let i = 0; i < pokemon['types'].length; i++) {
+        const types = pokemon['types'][i]['type']['name'];
+
+        content.innerHTML += `
+            <div class="text-capitalize type-field rounded-5 mb-1">${types}</div>
+         `;
+    }
+}
+
+
+function getSearchPokemonBackgroundColor(i) {
+    let color = selectedPokemon[i]['types'][0]['type']['name'];
+    document.getElementById(`pokemon${i}`).classList.add(color);
 }
 
 
