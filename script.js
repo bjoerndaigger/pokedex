@@ -21,7 +21,8 @@ function loadMorePokemon() {
     loadPokemon();
 }
 
-function pokemonSearch() {
+// Search
+function searchPokemon() {
     let search = document.getElementById('search-input').value;
     search = search.toLowerCase();
     let content = document.getElementById('pokemon');
@@ -33,10 +34,39 @@ function pokemonSearch() {
             selectedPokemon.push(result);
         }
     }
+    renderSearchPokemon();
+}
+
+function renderSearchPokemon() {
+    let content = document.getElementById('pokemon');
+    content.innerHTML = '';
+
+    for (let i = 0; i < selectedPokemon.length; i++) {
+        let name = selectedPokemon[i]['name'];
+        let id = selectedPokemon[i]['id'];
+        let idAsString = id.toString().padStart(3, '0');
+        let image = selectedPokemon[i]['sprites']['other']['official-artwork']['front_default'];
+
+        content.innerHTML += /*html*/ `
+            <div id="pokemon${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i})"> 
+                <div class="d-flex justify-content-between">
+                    <h2 class="text-capitalize">${name}</h2>
+                    <span class="fw-bold small">#${idAsString}</span>
+                </div>
+                <div class="d-flex flex-row justify-content-between">
+                    <div id="pokemon-types${i}"></div>
+                    <img class="pokemon-img" src="${image}"> 
+                </div>
+            </div>
+        `;
+        renderPokemonTypes(i);
+        getBackgroundColor(i);
+    }
 }
 
 
-function renderPokemon(i) {
+// Render Pokemonlist
+function renderPokemon() {
     let content = document.getElementById('pokemon');
     content.innerHTML = '';
 
@@ -84,7 +114,7 @@ function getBackgroundColor(i) {
     document.getElementById(`pokemon${i}`).classList.add(color);
 }
 
-
+// PopupCard
 function openPopupCard(i) {
     let element = document.getElementById('card-container');
     element.classList.remove('d-none');
@@ -131,6 +161,7 @@ function contentPopupCard(i) {
     getAbilities(i);
 }
 
+
 function renderTypesPopupCard(i) {
     let content = document.getElementById(`pokecard-types${i}`);
     let pokemon = pokemonData[i];
@@ -142,6 +173,7 @@ function renderTypesPopupCard(i) {
         `;
     }
 }
+
 
 function showAbout(i) {
     document.getElementById('pokemon-card-nav-link-2').classList.remove('text-dark');
@@ -174,6 +206,7 @@ function showAbout(i) {
         </table>
     `;
 }
+
 
 function getAbilities(i) {
     let content = document.getElementById('abilities');
@@ -260,11 +293,6 @@ function showStats(i) {
 }
 
 
-
-
-
-
-
 function getBackgroundColorPopupCard(i) {
     let color = pokemonData[i]['types'][0]['type']['name'];
     document.getElementById(`pokemon-card${i}`).classList.add(color);
@@ -283,6 +311,7 @@ function previousPokemon(i) {
     }
 }
 
+
 function nextPokemon(i) {
     if (i == pokemonData.length - 1) {
         document.getElementById('card-container').innerHTML = '';
@@ -295,6 +324,7 @@ function nextPokemon(i) {
         openPopupCard(i);
     }
 }
+
 
 function closePopupCard() {
     let element = document.getElementById('card-container');
