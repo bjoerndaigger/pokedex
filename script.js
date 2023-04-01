@@ -1,7 +1,7 @@
 let pokemonData = []; // globale Variable die JSON von API aufruft
 let selectedPokemon = []; // JSON Ergebnisse von Pokemon Search-Funktion
 let startLoading = 1
-let endLoading = 11;
+let endLoading = 21;
 
 
 async function loadPokemon() {
@@ -10,7 +10,7 @@ async function loadPokemon() {
         let response = await fetch(url); // Aufruf an Server und Abruf der Daten
         let pokemon = await response.json(); // umwandeln der Textdaten ins JSON-Format
         pokemonData.push(pokemon); // push der Daten in Array pokemonData
-        renderPokemon();
+        renderPokemon(pokemonData);
     }
 }
 
@@ -22,6 +22,18 @@ function loadMorePokemon() {
 }
 
 // Search
+
+// Funktion wird aufgerufen, wenn die Entertaste im Inputfeld gedrückt wird
+    let input = document.getElementById('search-input');
+    
+    input.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      document.getElementById('search-btn').click();
+    }
+  });
+
+  // Funktion, die den Wert des Inputfeldes ausgibt
 function searchPokemon() {
     let search = document.getElementById('search-input').value;
     search = search.toLowerCase();
@@ -34,65 +46,21 @@ function searchPokemon() {
             selectedPokemon.push(result);
         }
     }
-    renderSearchPokemon();
-}
-
-function renderSearchPokemon() {
-    let content = document.getElementById('pokemon');
-    content.innerHTML = '';
-
-    for (let i = 0; i < selectedPokemon.length; i++) {
-        let name = selectedPokemon[i]['name'];
-        let id = selectedPokemon[i]['id'];
-        let idAsString = id.toString().padStart(3, '0');
-        let image = selectedPokemon[i]['sprites']['other']['official-artwork']['front_default'];
-
-        content.innerHTML += /*html*/ `
-            <div id="pokemon${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i})"> 
-                <div class="d-flex justify-content-between">
-                    <h2 class="text-capitalize">${name}</h2>
-                    <span class="fw-bold small">#${idAsString}</span>
-                </div>
-                <div class="d-flex flex-row justify-content-between">
-                    <div id="pokemon-types${i}"></div>
-                    <img class="pokemon-img" src="${image}"> 
-                </div>
-            </div>
-        `;
-        renderSearchPokemonTypes(i);
-        getSearchPokemonBackgroundColor(i);
-    }
-}
-
-function renderSearchPokemonTypes(i) {
-    let content = document.getElementById(`pokemon-types${i}`);
-    let pokemon = selectedPokemon[i];
-    for (let i = 0; i < pokemon['types'].length; i++) {
-        const types = pokemon['types'][i]['type']['name'];
-
-        content.innerHTML += `
-            <div class="text-capitalize type-field rounded-5 mb-1">${types}</div>
-         `;
-    }
-}
-
-
-function getSearchPokemonBackgroundColor(i) {
-    let color = selectedPokemon[i]['types'][0]['type']['name'];
-    document.getElementById(`pokemon${i}`).classList.add(color);
+    renderPokemon(selectedPokemon);
+    document.getElementById('search-input').value = '';
 }
 
 
 // Render Pokemonlist
-function renderPokemon() {
+function renderPokemon(currentPokemon) {
     let content = document.getElementById('pokemon');
     content.innerHTML = '';
 
-    for (let i = 0; i < pokemonData.length; i++) {
-        let name = pokemonData[i]['name'];
-        let id = pokemonData[i]['id'];
+    for (let i = 0; i < currentPokemon.length; i++) {
+        let name = currentPokemon[i]['name'];
+        let id = currentPokemon[i]['id'];
         let idAsString = id.toString().padStart(3, '0');
-        let image = pokemonData[i]['sprites']['other']['official-artwork']['front_default'];
+        let image = currentPokemon[i]['sprites']['other']['official-artwork']['front_default'];
 
         content.innerHTML += /*html*/ `
             <div id="pokemon${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i})"> 
@@ -106,17 +74,15 @@ function renderPokemon() {
                 </div>
             </div>
         `;
-        renderPokemonTypes(i);
-        getBackgroundColor(i);
+        renderPokemonTypes(i, currentPokemon);
+        getBackgroundColor(i, currentPokemon);
     }
 }
 
 
-
-
-function renderPokemonTypes(i) {
+function renderPokemonTypes(i, currentPokemon) {
     let content = document.getElementById(`pokemon-types${i}`);
-    let pokemon = pokemonData[i];
+    let pokemon = currentPokemon[i];
     for (let i = 0; i < pokemon['types'].length; i++) {
         const types = pokemon['types'][i]['type']['name'];
 
@@ -127,8 +93,8 @@ function renderPokemonTypes(i) {
 }
 
 
-function getBackgroundColor(i) {
-    let color = pokemonData[i]['types'][0]['type']['name'];
+function getBackgroundColor(i, currentPokemon) {
+    let color = currentPokemon[i]['types'][0]['type']['name'];
     document.getElementById(`pokemon${i}`).classList.add(color);
 }
 

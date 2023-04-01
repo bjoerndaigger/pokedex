@@ -53,17 +53,12 @@ h2 {
 .close-btn, .back-btn, .forward-btn {
     filter: invert(1);
     margin-bottom: 8px;
+    height: 32px;
     cursor: pointer;
 }
 
-.close-btn {
-    height: 32px;
-}
-
 .back-btn, .forward-btn {
-    margin-left: -20px;
-    margin-right: -20px;
-    margin-top: 80px;
+    margin-top: 24px;
 }
 
 .type-field-popup {
