@@ -24,29 +24,34 @@ function loadMorePokemon() {
 // Search
 
 // Funktion wird aufgerufen, wenn die Entertaste im Inputfeld gedrückt wird
-    let input = document.getElementById('search-input');
-    
-    input.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      document.getElementById('search-btn').click();
-    }
-  });
+let input = document.getElementById('search-input');
 
-  // Funktion, die den Wert des Inputfeldes ausgibt
+input.addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        document.getElementById('search-btn').click();
+    }
+});
+
+// Funktion, die den Wert des Inputfeldes ausgibt
 function searchPokemon() {
     let search = document.getElementById('search-input').value;
     search = search.toLowerCase();
     let content = document.getElementById('pokemon');
     content.innerHTML = '';
 
-    for (let i = 0; i < pokemonData.length; i++) {
-        const result = pokemonData[i];
-        if (result['name'].toLowerCase().includes(search)) {
-            selectedPokemon.push(result);
+    if (search != 0) {
+        for (let i = 0; i < pokemonData.length; i++) {
+            const result = pokemonData[i];
+            if (result['name'].toLowerCase().includes(search)) {
+                selectedPokemon.push(result);
+                renderPokemon(selectedPokemon);
+            }
         }
+    } else {
+        selectedPokemon = [];
+        renderPokemon(pokemonData);
     }
-    renderPokemon(selectedPokemon);
     document.getElementById('search-input').value = '';
 }
 
