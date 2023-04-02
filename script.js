@@ -1,6 +1,5 @@
 let pokemonData = []; // globale Variable die JSON von API aufruft
 let selectedPokemon = []; // JSON Ergebnisse von Pokemon Search-Funktion
-let currentPokemon;
 let startLoading = 1
 let endLoading = 21;
 
@@ -55,9 +54,9 @@ function searchPokemon() {
         renderPokemon(pokemonData);
         document.getElementById('load-btn').classList.remove('d-none');
     }
+
     document.getElementById('search-input').value = '';
 }
-
 
 // Render Pokemonlist
 function renderPokemon(currentPokemon) {
@@ -108,8 +107,7 @@ function getBackgroundColor(i, currentPokemon) {
 
 // PopupCard
 function openPopupCard(i) {
-    let element = document.getElementById('card-container');
-    element.classList.remove('d-none');
+    document.getElementById('card-container').classList.remove('d-none');
     contentPopupCard(i);
 }
 
@@ -150,7 +148,6 @@ function contentPopupCard(i) {
     renderTypesPopupCard(i);
     getBackgroundColorPopupCard(i);
     showAbout(i);
-    getAbilities(i);
 }
 
 
@@ -197,6 +194,7 @@ function showAbout(i) {
 	        </tr>
         </table>
     `;
+    getAbilities(i);
 }
 
 
@@ -319,9 +317,7 @@ function nextPokemon(i) {
 
 
 function closePopupCard() {
-    let element = document.getElementById('card-container');
-    element.classList.add('d-none');
-
+    document.getElementById('card-container').classList.add('d-none');
 }
 
 
