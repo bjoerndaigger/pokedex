@@ -120,7 +120,7 @@ function contentPopupCard(i) {
 
 
     document.getElementById('card-container').innerHTML = /*html*/ `
-        <div class="pokemon-card">
+        <div class="pokemon-card" onclick="doNotClose(event)">
             <div id="pokemon-card${i}" class="name-container">
                 <img class="close-btn" src="./img/close-btn.png" onclick="closePopupCard()">
                     <div class="d-flex justify-content-between">
@@ -318,6 +318,11 @@ function nextPokemon(i) {
 
 function closePopupCard() {
     document.getElementById('card-container').classList.add('d-none');
+}
+
+// stop closing popup card by click on background for popup card content
+function doNotClose(event) {
+    event.stopPropagation();
 }
 
 
