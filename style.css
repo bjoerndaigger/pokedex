@@ -6,7 +6,13 @@ h2 {
 
 .pokemon-container {
     width: 250px;
+    padding: 24px;
     cursor: pointer;
+}
+
+.pokemon-container:hover {
+    transform: scale(1.05);
+    transition: all 225ms ease-in-out;
 }
 
 .type-field {
