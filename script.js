@@ -108,62 +108,65 @@ function getBackgroundColor(i, currentPokemon) {
 // PopupCard
 function openPopupCard(i, search) {
     document.getElementById('card-container').classList.remove('d-none');
-    
     contentPopupCard(i, search);
 }
 
-
+// If-Else, which renders all Pokemon or search results
 function contentPopupCard(i, search) {
-
     if (!search) {
-        console.log('nosearch');
+        let currentPokemon = pokemonData[i];
+        document.getElementById('card-container').innerHTML = htmlOpenPopupCard(i, currentPokemon);
+        renderTypesPopupCard(i, currentPokemon);
+        getBackgroundColorPopupCard(i, currentPokemon);
+        showAbout(i, currentPokemon);
     } else {
-        console.log('search');
+        let currentPokemon = selectedPokemon[i];
+        document.getElementById('card-container').innerHTML = htmlOpenPopupCard(i, currentPokemon);
+        renderTypesPopupCard(i, currentPokemon);
+        getBackgroundColorPopupCard(i, currentPokemon);
+        showAbout(i, currentPokemon);
     }
+}
 
-    let name = pokemonData[i]['name'];
-    let id = pokemonData[i]['id'];
+function htmlOpenPopupCard(i, currentPokemon) {
+    let name = currentPokemon['name'];
+    let id = currentPokemon['id'];
     let idAsString = id.toString().padStart(3, '0');
-    let image = pokemonData[i]['sprites']['other']['official-artwork']['front_default'];
+    let image = currentPokemon['sprites']['other']['official-artwork']['front_default'];
 
-
-    document.getElementById('card-container').innerHTML = /*html*/ `
-        <div class="pokemon-card" onclick="doNotClose(event)">
-            <div id="pokemon-card${i}" class="name-container">
-                <img class="close-btn" src="./img/close-btn.png" onclick="closePopupCard()">
-                    <div class="d-flex justify-content-between">
-                        <h2 class="text-capitalize">${name}</h2>
-                        <span class="fw-bold">#${idAsString}</span>
-                    </div>
-                    <div id="pokecard-types${i}" class="d-flex"></div>
+    return /*html*/ `
+    <div class="pokemon-card" onclick="doNotClose(event)">
+        <div id="pokemon-card${i}" class="name-container">
+            <img class="close-btn" src="./img/close-btn.png" onclick="closePopupCard()">
                 <div class="d-flex justify-content-between">
-                    <img id="back-btn" class="back-btn" src="./img/arrow-back.png" onclick="previousPokemon(${i})">
-                    <img id="forward-btn" class="forward-btn" src="./img/arrow-forward.png" onclick="nextPokemon(${i})">
+                    <h2 class="text-capitalize">${name}</h2>
+                    <span class="fw-bold">#${idAsString}</span>
                 </div>
-            </div>
-            <div class="info-container d-flex flex-column justify-content-start align-items-center">
-                <img class="pokemon-card-img" src="${image}">
-
-                <div class="d-flex justify-content-between w-50 p-2"> 
-                    <a id="pokemon-card-nav-link-1" class="pokemon-card-nav text-secondary fw-bold" href="javascript:void(0);" onclick="showAbout(${i})">About</a>       
-                    <a id="pokemon-card-nav-link-2" class="pokemon-card-nav text-secondary fw-bold" href="javascript:void(0);" onclick="showStats(${i})">Stats</a> 
-                </div>
-                <div id="more-details" class="w-100">
-                </div>
+                <div id="pokecard-types${i}" class="d-flex"></div>
+            <div class="d-flex justify-content-between">
+                <img id="back-btn" class="back-btn" src="./img/arrow-back.png" onclick="previousPokemon(${i})">
+                <img id="forward-btn" class="forward-btn" src="./img/arrow-forward.png" onclick="nextPokemon(${i})">
             </div>
         </div>
-    `;
-    renderTypesPopupCard(i);
-    getBackgroundColorPopupCard(i);
-    showAbout(i);
+        <div class="info-container d-flex flex-column justify-content-start align-items-center">
+            <img class="pokemon-card-img" src="${image}">
+
+            <div class="d-flex justify-content-between w-50 p-2"> 
+                <a id="pokemon-card-nav-link-1" class="pokemon-card-nav text-secondary fw-bold" href="javascript:void(0);" onclick="showAbout(${i})">About</a>       
+                <a id="pokemon-card-nav-link-2" class="pokemon-card-nav text-secondary fw-bold" href="javascript:void(0);" onclick="showStats(${i})">Stats</a> 
+            </div>
+            <div id="more-details" class="w-100">
+            </div>
+        </div>
+    </div>
+`;
 }
 
 
-function renderTypesPopupCard(i) {
+function renderTypesPopupCard(i, currentPokemon) {
     let content = document.getElementById(`pokecard-types${i}`);
-    let pokemon = pokemonData[i];
-    for (let i = 0; i < pokemon['types'].length; i++) {
-        const types = pokemon['types'][i]['type']['name'];
+    for (let i = 0; i < currentPokemon['types'].length; i++) {
+        const types = currentPokemon['types'][i]['type']['name'];
 
         content.innerHTML += `
             <div class="text-capitalize type-field rounded-5 type-field-popup">${types}</div>
@@ -222,7 +225,7 @@ function getAbilities(i) {
 }
 
 
-function showStats(i) {
+function showStats(i, currentPokemon) {
     document.getElementById('pokemon-card-nav-link-1').classList.remove('text-dark');
     document.getElementById('pokemon-card-nav-link-2').classList.add('text-dark');
 
@@ -291,8 +294,8 @@ function showStats(i) {
 }
 
 
-function getBackgroundColorPopupCard(i) {
-    let color = pokemonData[i]['types'][0]['type']['name'];
+function getBackgroundColorPopupCard(i, currentPokemon) {
+    let color = currentPokemon['types'][0]['type']['name'];
     document.getElementById(`pokemon-card${i}`).classList.add(color);
 }
 
