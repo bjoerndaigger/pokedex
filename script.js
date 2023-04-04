@@ -10,7 +10,7 @@ async function loadPokemon() {
         let response = await fetch(url); // Aufruf an Server und Abruf der Daten
         let pokemon = await response.json(); // umwandeln der Textdaten ins JSON-Format
         pokemonData.push(pokemon); // push der Daten in Array pokemonData
-        renderPokemon(pokemonData);
+        renderPokemon(pokemonData, false);
     }
 }
 
@@ -40,12 +40,12 @@ function searchPokemon() {
     let content = document.getElementById('pokemon');
     content.innerHTML = '';
 
-    if (search != 0) {
+    if (search.length > 0) {
         for (let i = 0; i < pokemonData.length; i++) {
             const result = pokemonData[i];
             if (result['name'].toLowerCase().includes(search)) {
                 selectedPokemon.push(result);
-                renderPokemon(selectedPokemon);
+                renderPokemon(selectedPokemon, true);
                 document.getElementById('load-btn').classList.add('d-none');
             }
         }
@@ -59,7 +59,7 @@ function searchPokemon() {
 }
 
 // Render Pokemonlist
-function renderPokemon(currentPokemon) {
+function renderPokemon(currentPokemon, search) {
     let content = document.getElementById('pokemon');
     content.innerHTML = '';
 
@@ -70,7 +70,7 @@ function renderPokemon(currentPokemon) {
         let image = currentPokemon[i]['sprites']['other']['official-artwork']['front_default'];
 
         content.innerHTML += /*html*/ `
-            <div id="pokemon${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i})"> 
+            <div id="pokemon${i}" class="pokemon-container text-white m-3 p-3 rounded-5" onclick="openPopupCard(${i}, ${search})"> 
                 <div class="d-flex justify-content-between">
                     <h2 class="text-capitalize">${name}</h2>
                     <span class="fw-bold small">#${idAsString}</span>
@@ -106,13 +106,21 @@ function getBackgroundColor(i, currentPokemon) {
 }
 
 // PopupCard
-function openPopupCard(i) {
+function openPopupCard(i, search) {
     document.getElementById('card-container').classList.remove('d-none');
-    contentPopupCard(i);
+    
+    contentPopupCard(i, search);
 }
 
 
-function contentPopupCard(i) {
+function contentPopupCard(i, search) {
+
+    if (!search) {
+        console.log('nosearch');
+    } else {
+        console.log('search');
+    }
+
     let name = pokemonData[i]['name'];
     let id = pokemonData[i]['id'];
     let idAsString = id.toString().padStart(3, '0');
