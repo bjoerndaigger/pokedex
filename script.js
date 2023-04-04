@@ -119,12 +119,14 @@ function contentPopupCard(i, search) {
         renderTypesPopupCard(i, currentPokemon);
         getBackgroundColorPopupCard(i, currentPokemon);
         showAbout(i, currentPokemon);
+        console.log(i, currentPokemon, search);
     } else {
         let currentPokemon = selectedPokemon[i];
         document.getElementById('card-container').innerHTML = htmlOpenPopupCard(i, currentPokemon);
         renderTypesPopupCard(i, currentPokemon);
         getBackgroundColorPopupCard(i, currentPokemon);
         showAbout(i, currentPokemon);
+        console.log(i, currentPokemon, search);
     }
 }
 
