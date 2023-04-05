@@ -34,8 +34,12 @@ function htmlOpenPopupCard(i, currentPokemon, search) {
                 </div>
                 <div id="pokecard-types${i}" class="d-flex"></div>
             <div class="d-flex justify-content-between">
-                <img id="back-btn" class="back-btn" src="./img/arrow-back.png" onclick="previousPokemon(${i}, ${search})">
-                <img id="forward-btn" class="forward-btn" src="./img/arrow-forward.png" onclick="nextPokemon(${i}, ${search})">
+                <div>
+                    <img id="back-btn" class="back-btn" src="./img/arrow-back.png" onclick="previousPokemon(${i}, ${search})">
+                </div>
+                <div>
+                    <img id="forward-btn" class="forward-btn" src="./img/arrow-forward.png" onclick="nextPokemon(${i}, ${search})">
+                </div>
             </div>
         </div>
         <div class="info-container d-flex flex-column justify-content-start align-items-center">

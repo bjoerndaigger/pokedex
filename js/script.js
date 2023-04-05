@@ -1,16 +1,21 @@
-let pokemonData = []; // globale Variable die JSON von API aufruft
-let selectedPokemon = []; // JSON Ergebnisse von Pokemon Search-Funktion
+let pokemonData = []; // render als pokemon
+let selectedPokemon = []; //results from search input
 let startLoading = 1
 let endLoading = 21;
 
 
+/**
+ * function to load and render 20 pokemons
+ * 
+ * @param {boolean} false checks if all pokemon or only search results are rendered
+ */
 async function loadPokemon() {
     for (let i = startLoading; i < endLoading; i++) {
-        let url = `https://pokeapi.co/api/v2/pokemon/${i}/`; // URL der API
-        let response = await fetch(url); // Aufruf an Server und Abruf der Daten
-        let pokemon = await response.json(); // umwandeln der Textdaten ins JSON-Format
-        pokemonData.push(pokemon); // push der Daten in Array pokemonData
-        renderPokemon(pokemonData, false);  // render komplette Pokemon Liste, wenn Search-Input leer ist
+        let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
+        let response = await fetch(url);
+        let pokemon = await response.json();
+        pokemonData.push(pokemon);
+        renderPokemon(pokemonData, false);
     }
 }
 
@@ -22,9 +27,9 @@ function loadMorePokemon() {
 }
 
 
-// Search
-
-// Funktion wird aufgerufen, wenn die Entertaste im Inputfeld gedrückt wird
+/**
+ * activates search by click on enter key
+ */
 let input = document.getElementById('search-input');
 
 input.addEventListener('keypress', function (event) {
@@ -35,7 +40,11 @@ input.addEventListener('keypress', function (event) {
 });
 
 
-// Funktion, die den Wert des Inputfeldes ausgibt
+/**
+ * function to search for a pokemon by clicking on the search-input
+ * 
+ * @param {boolean} true checks if all pokemon or only search results are rendered
+ */
 function searchPokemon() {
     let searchInput = document.getElementById('search-input').value;
     searchInput = searchInput.toLowerCase();
@@ -50,14 +59,21 @@ function searchPokemon() {
                 selectedPokemon.push(result);
                 renderPokemon(selectedPokemon, true);
                 document.getElementById('load-btn').classList.add('d-none');
-            }
+            } 
         }
     } else {
         selectedPokemon = [];
         renderPokemon(pokemonData);
         document.getElementById('load-btn').classList.remove('d-none');
     }
+    resetInput();
+}
 
+
+/**
+ * function to reset automatically the value of the search-input 
+ */
+function resetInput() {
     document.getElementById('search-input').value = '';
 }
 
@@ -113,8 +129,20 @@ function contentPopupCard(i, currentPokemon, search) {
     renderTypesPopupCard(i, currentPokemon);
     getBackgroundColorPopupCard(i, currentPokemon);
     showAbout(i, search);
+    hideBackAndForwardBtn(i, search);
 }
 
+function hideBackAndForwardBtn(i, search) {
+    if (i == 0) {
+        document.getElementById('back-btn').classList.add('d-none');
+    }
+    if (i == pokemonData.length - 1 && search === false) {
+        document.getElementById('forward-btn').classList.add('d-none');
+    }
+    if (i == selectedPokemon.length - 1 && search === true) {
+        document.getElementById('forward-btn').classList.add('d-none');
+    }
+}
 
 function renderTypesPopupCard(i, currentPokemon) {
     let content = document.getElementById(`pokecard-types${i}`);
@@ -196,42 +224,18 @@ function doNotClosePopupCardContent(event) {
     event.stopPropagation();
 }
 
+
 function previousPokemon(i, search) {
     document.getElementById('card-container').innerHTML = '';
     i--;
+    console.log(i);
     openPopupCard(i, search)
 }
+
 
 function nextPokemon(i, search) {
     document.getElementById('card-container').innerHTML = '';
     i++;
     openPopupCard(i, search)
 }
-
-
-/* function previousPokemon(i) {
-    if (i == 0) {
-        document.getElementById('card-container').innerHTML = ``;
-        i = pokemonData.length - 1;
-        openPopupCard(i);
-    } else {
-        i--;
-        document.getElementById('card-container').innerHTML = ``;
-        openPopupCard(i);
-    }
-}
-
-
-function nextPokemon(i) {
-    if (i == pokemonData.length - 1) {
-        document.getElementById('card-container').innerHTML = '';
-        i = 0;
-        openPopupCard(i);
-
-    } else {
-        i++;
-        document.getElementById('card-container').innerHTML = '';
-        openPopupCard(i);
-    }
-} */
 
