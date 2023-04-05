@@ -109,10 +109,10 @@ function openPopupCard(i, search) {
 
 
 function contentPopupCard(i, currentPokemon, search) {
-        document.getElementById('card-container').innerHTML = htmlOpenPopupCard(i, currentPokemon, search);
-        renderTypesPopupCard(i, currentPokemon);
-        getBackgroundColorPopupCard(i, currentPokemon);
-        showAbout(i, search);
+    document.getElementById('card-container').innerHTML = htmlOpenPopupCard(i, currentPokemon, search);
+    renderTypesPopupCard(i, currentPokemon);
+    getBackgroundColorPopupCard(i, currentPokemon);
+    showAbout(i, search);
 }
 
 
@@ -196,6 +196,41 @@ function doNotClosePopupCardContent(event) {
     event.stopPropagation();
 }
 
+
+/*function previousPokemon(i, search) {
+    if (search === false) {
+        let currentPokemon = pokemonData[i];
+        backwards(i, currentPokemon, search);
+    } else {
+        let currentPokemon = selectedPokemon[i];
+        backwards(i, currentPokemon, search);
+    }
+}
+
+
+function backwards(i, currentPokemon, search) {
+        i--;
+        document.getElementById('card-container').innerHTML = ``;
+        openPopupCard(i, search);
+}
+
+
+function nextPokemon(i, search) {
+    if (search === false) {
+        let currentPokemon = pokemonData[i];
+        forward(i, currentPokemon, search);
+    } else {
+        let currentPokemon = selectedPokemon[i];
+        forward(i, currentPokemon, search);
+    }
+}
+
+
+function forward(i, currentPokemon, search) {
+        i++;
+        document.getElementById('card-container').innerHTML = '';
+        openPopupCard(i, search);
+}
 
 /* function previousPokemon(i) {
     if (i == 0) {
