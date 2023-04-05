@@ -196,41 +196,18 @@ function doNotClosePopupCardContent(event) {
     event.stopPropagation();
 }
 
-
-/*function previousPokemon(i, search) {
-    if (search === false) {
-        let currentPokemon = pokemonData[i];
-        backwards(i, currentPokemon, search);
-    } else {
-        let currentPokemon = selectedPokemon[i];
-        backwards(i, currentPokemon, search);
-    }
+function previousPokemon(i, search) {
+    document.getElementById('card-container').innerHTML = '';
+    i--;
+    openPopupCard(i, search)
 }
-
-
-function backwards(i, currentPokemon, search) {
-        i--;
-        document.getElementById('card-container').innerHTML = ``;
-        openPopupCard(i, search);
-}
-
 
 function nextPokemon(i, search) {
-    if (search === false) {
-        let currentPokemon = pokemonData[i];
-        forward(i, currentPokemon, search);
-    } else {
-        let currentPokemon = selectedPokemon[i];
-        forward(i, currentPokemon, search);
-    }
+    document.getElementById('card-container').innerHTML = '';
+    i++;
+    openPopupCard(i, search)
 }
 
-
-function forward(i, currentPokemon, search) {
-        i++;
-        document.getElementById('card-container').innerHTML = '';
-        openPopupCard(i, search);
-}
 
 /* function previousPokemon(i) {
     if (i == 0) {
