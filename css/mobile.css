@@ -1,0 +1,15 @@
+@media (max-width: 375px) {
+    .pokemon-card {
+        width: 320px;
+        height: 640px;
+    }
+
+    .pokemon-card-img {
+        height: 160px;
+        margin-top: -110px;
+    }
+
+    #more-details {
+        font-size: smaller;
+    }
+}

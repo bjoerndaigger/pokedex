@@ -25,7 +25,7 @@ function htmlOpenPopupCard(i, currentPokemon, search) {
     let image = currentPokemon['sprites']['other']['official-artwork']['front_default'];
 
     return /*html*/ `
-    <div class="pokemon-card" onclick="doNotClose(event)">
+    <div class="pokemon-card" onclick="doNotClosePopupCardContent(event)">
         <div id="pokemon-card${i}" class="name-container">
             <img class="close-btn" src="./img/close-btn.png" onclick="closePopupCard()">
                 <div class="d-flex justify-content-between">

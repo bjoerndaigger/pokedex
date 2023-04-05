@@ -94,30 +94,25 @@ function getBackgroundColor(i, currentPokemon) {
 
 
 // PopupCard
+// If-Else, which renders all Pokemon or search results
+
 function openPopupCard(i, search) {
     document.getElementById('card-container').classList.remove('d-none');
-
-
-    
-    contentPopupCard(i, search);
+    if (search === false) {
+        let currentPokemon = pokemonData[i];
+        contentPopupCard(i, currentPokemon, search);
+    } else {
+        let currentPokemon = selectedPokemon[i];
+        contentPopupCard(i, currentPokemon, search);
+    }
 }
 
 
-// If-Else, which renders all Pokemon or search results
-function contentPopupCard(i, search) {
-    if (search === false) {
-        let currentPokemon = pokemonData[i];
+function contentPopupCard(i, currentPokemon, search) {
         document.getElementById('card-container').innerHTML = htmlOpenPopupCard(i, currentPokemon, search);
         renderTypesPopupCard(i, currentPokemon);
         getBackgroundColorPopupCard(i, currentPokemon);
         showAbout(i, search);
-    } else {
-        let currentPokemon = selectedPokemon[i];
-        document.getElementById('card-container').innerHTML = htmlOpenPopupCard(i, currentPokemon, search);
-        renderTypesPopupCard(i, currentPokemon);
-        getBackgroundColorPopupCard(i, currentPokemon);
-        showAbout(i, search);
-    }
 }
 
 
@@ -156,8 +151,8 @@ function getAbilities(currentPokemon) {
     let content = document.getElementById('abilities');
     content.innerHTML = '';
 
-    for (let j = 0; j < currentPokemon['abilities'].length; j++) {
-        const abilities = currentPokemon['abilities'][j]['ability']['name'];
+    for (let i = 0; i < currentPokemon['abilities'].length; i++) {
+        const abilities = currentPokemon['abilities'][i]['ability']['name'];
 
         content.innerHTML += `
             <div>${abilities}</div>
@@ -197,7 +192,7 @@ function closePopupCard() {
 
 
 // stop closing popup card by click on background for popup card content
-function doNotClose(event) {
+function doNotClosePopupCardContent(event) {
     event.stopPropagation();
 }
 
