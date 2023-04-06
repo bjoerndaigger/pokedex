@@ -13,3 +13,13 @@
         font-size: smaller;
     }
 }
+
+@media (max-width: 576px) {
+    .navbar-mobile {
+        flex-direction: column;
+    }
+
+    .form-mobile {
+        flex-direction: column;
+    }
+}

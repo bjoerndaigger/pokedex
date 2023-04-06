@@ -1,11 +1,11 @@
 let pokemonData = []; // render als pokemon
 let selectedPokemon = []; //results from search input
 let startLoading = 1
-let endLoading = 21;
+let endLoading = 31;
 
 
 /**
- * function to load and render 20 pokemons
+ * function to load and render 30 pokemons
  * 
  * @param {boolean} false checks if all pokemon or only search results are rendered
  */
