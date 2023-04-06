@@ -19,6 +19,10 @@
         flex-direction: column;
     }
 
+    .navbar-logo-mobile {
+        margin: 16px;
+    }
+
     .form-mobile {
         flex-direction: column;
     }

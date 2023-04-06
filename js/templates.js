@@ -18,6 +18,7 @@ function htmlRenderPokemon(i, currentPokemon, search) {
 `;
 }
 
+
 function htmlOpenPopupCard(i, currentPokemon, search) {
     let name = currentPokemon['name'];
     let id = currentPokemon['id'];
@@ -56,6 +57,7 @@ function htmlOpenPopupCard(i, currentPokemon, search) {
 `;
 }
 
+
 function htmlShowAbout(currentPokemon) {
 
     let height = currentPokemon['height'];
@@ -82,6 +84,7 @@ function htmlShowAbout(currentPokemon) {
     </table>
 `;
 }
+
 
 function htmlShowStats(currentPokemon) {
     let hp = currentPokemon['stats'][0]['base_stat'];

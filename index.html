@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/types.css">
     <link rel="stylesheet" href="./css/mobile.css">
     <script src="./js/script.js" defer></script>
+    <script src="./js/search.js" defer></script>
     <script src="./js/templates.js" defer></script>
 
     <!-- bootstrap -->
@@ -29,7 +30,7 @@
 <body onload="loadPokemon()">
     <nav class="navbar navbar-light bg-light justify-content-between px-3 navbar-mobile">
 
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand navbar-logo-mobile" href="./index.html">
             <img src="./img/pokeball.png" width="30" height="30" class="d-inline-block align-top" alt="Pokedex">
             Pokedex
           </a>
@@ -38,7 +39,7 @@
             <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Search"
                 aria-label="Search">
             <button id="search-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit"
-                onclick="searchPokemon(); return false">Search</button>
+                onclick="pokemonSearch(); return false">Search</button>
         </form>
     </nav>
 
@@ -56,7 +57,7 @@
     <div id="card-container" class="card-container d-none" onclick="closePopupCard()">
     </div>
 
-    <!-- Imprint -->
+    <!-- imprint -->
     <div class="text-center">
         <a href="https://www.flaticon.com/free-icons/pokemon" title="pokemon icons">Pokemon icons created by Nikita
             Golubev - Flaticon</a>

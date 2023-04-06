@@ -1,13 +1,11 @@
-let pokemonData = []; // render als pokemon
-let selectedPokemon = []; //results from search input
+let pokemonData = []; // pokemon list
+let selectedPokemon = []; // pokemon search
 let startLoading = 1
 let endLoading = 31;
 
 
 /**
- * function to load and render 30 pokemons
- * 
- * @param {boolean} false checks if all pokemon or only search results are rendered
+ * function to load 30 pokemon from api
  */
 async function loadPokemon() {
     for (let i = startLoading; i < endLoading; i++) {
@@ -15,11 +13,26 @@ async function loadPokemon() {
         let response = await fetch(url);
         let pokemon = await response.json();
         pokemonData.push(pokemon);
-        renderPokemon(pokemonData, false);
+        renderPokemonList();
     }
 }
 
 
+/**
+ * function to render pokemon list
+ * 
+ * @param {json} pokemonData contains all infos for pokemon list
+ * @param {boolean} search checks if the list of all pokemon (false) or only the search results (true) will rendered
+ */
+function renderPokemonList() {
+    let search = false;
+    renderPokemon(pokemonData, search);
+}
+
+
+/**
+ * function to load 20 more pokemon from api
+ */
 function loadMorePokemon() {
     startLoading = endLoading;
     endLoading = endLoading + 20;
@@ -28,63 +41,11 @@ function loadMorePokemon() {
 
 
 /**
- * activates search by click on enter key
- */
-let input = document.getElementById('search-input');
-
-input.addEventListener('keypress', function (event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        document.getElementById('search-btn').click();
-    }
-});
-
-
-/**
- * function to search for a pokemon by clicking on the search-input
+ * function to render pokemon list or search results
  * 
- * @param {boolean} true checks if all pokemon or only search results are rendered
+ * @param {json} currentPokemon contains all infos about current pokemon
+ * @param {boolean} search is false, pokemon list will be rendered / is true, pokemon search will be rendered
  */
-function searchPokemon() {
-    let searchInput = document.getElementById('search-input').value;
-    searchInput = searchInput.toLowerCase();
-    let content = document.getElementById('pokemon');
-    content.innerHTML = '';
-
-    if (searchInput.length > 0) {
-        selectedPokemon = [];
-        for (let i = 0; i < pokemonData.length; i++) {
-            const result = pokemonData[i];
-            if (result['name'].toLowerCase().includes(searchInput)) {
-                selectedPokemon.push(result);
-                checkSearchValue(selectedPokemon, true);
-                document.getElementById('load-btn').classList.add('d-none');
-            } 
-        }
-    } else {
-        selectedPokemon = [];
-        renderPokemon(pokemonData);
-        document.getElementById('load-btn').classList.remove('d-none');
-    }
-    resetInput();
-}
-
-
-/**
- * function to reset automatically the value of the search-input 
- */
-function resetInput() {
-    document.getElementById('search-input').value = '';
-}
-
-function checkSearchValue(currentPokemon, search) {
-    let checkValue = Object.keys(currentPokemon).length;
-    console.log(checkValue);
-    renderPokemon(currentPokemon, search);
-}
-
-
-// Render Pokemonlist
 function renderPokemon(currentPokemon, search) {
     let content = document.getElementById('pokemon');
     content.innerHTML = '';
@@ -96,6 +57,13 @@ function renderPokemon(currentPokemon, search) {
     }
 }
 
+
+/**
+ * function to render pokemon types
+ * 
+ * @param {number} i to get the correct counter index
+ * @param {json} currentPokemon contains all infos about current pokemon
+ */
 function renderPokemonTypes(i, currentPokemon) {
     let content = document.getElementById(`pokemon-types${i}`);
     let pokemon = currentPokemon[i];
@@ -109,15 +77,25 @@ function renderPokemonTypes(i, currentPokemon) {
 }
 
 
+/**
+ * function to add the correct background color to each pokemon
+ * 
+ * @param {number} i to get the correct counter index
+ * @param {json} currentPokemon contains all infos about current pokemon
+ */
 function getBackgroundColor(i, currentPokemon) {
     let color = currentPokemon[i]['types'][0]['type']['name'];
     document.getElementById(`pokemon${i}`).classList.add(color);
 }
 
 
-// PopupCard
-// If-Else, which renders all Pokemon or search results
-
+/**
+ * POPUP CARD
+ * function to open popup card with details for current pokemon
+ * 
+ * @param {number} i to get the correct counter index
+ * @param {boolean} search is false, pokemon list will be rendered / is true, pokemon search will be rendered
+ */
 function openPopupCard(i, search) {
     document.getElementById('card-container').classList.remove('d-none');
     if (search === false) {
@@ -130,6 +108,14 @@ function openPopupCard(i, search) {
 }
 
 
+/**
+ * POPUP CARD
+ * function to get content for current pokemon popup card
+ * 
+ * @param {number} i to get the correct counter index
+ * @param {json} currentPokemon contains all infos about current pokemon
+ * @param {boolean} search is false, pokemon list will be rendered / is true, pokemon search will be rendered
+ */
 function contentPopupCard(i, currentPokemon, search) {
     document.getElementById('card-container').innerHTML = htmlOpenPopupCard(i, currentPokemon, search);
     renderTypesPopupCard(i, currentPokemon);
@@ -138,18 +124,14 @@ function contentPopupCard(i, currentPokemon, search) {
     hideBackAndForwardBtn(i, search);
 }
 
-function hideBackAndForwardBtn(i, search) {
-    if (i == 0) {
-        document.getElementById('back-btn').classList.add('d-none');
-    }
-    if (i == pokemonData.length - 1 && search === false) {
-        document.getElementById('forward-btn').classList.add('d-none');
-    }
-    if (i == selectedPokemon.length - 1 && search === true) {
-        document.getElementById('forward-btn').classList.add('d-none');
-    }
-}
 
+/**
+ * POPUP CARD
+ * function to get types for current pokemon popup card
+ * 
+ * @param {number} i to get the correct counter index
+ * @param {json} currentPokemon contains all infos about current pokemon
+ */
 function renderTypesPopupCard(i, currentPokemon) {
     let content = document.getElementById(`pokecard-types${i}`);
     for (let i = 0; i < currentPokemon['types'].length; i++) {
@@ -162,6 +144,13 @@ function renderTypesPopupCard(i, currentPokemon) {
 }
 
 
+/**
+ * POPUP CARD
+ * function to render about details for current pokemon popup card
+ * 
+ * @param {number} i to get the correct counter index
+ * @param {boolean} search is false, pokemon list will be rendered / is true, pokemon search will be rendered
+ */
 function showAbout(i, search) {
     document.getElementById('pokemon-card-nav-link-2').classList.remove('text-dark');
     document.getElementById('pokemon-card-nav-link-1').classList.add('text-dark');
@@ -181,6 +170,12 @@ function showAbout(i, search) {
 }
 
 
+/**
+ * POPUP CARD
+ * function to render abilities for current pokemon popup card
+ * 
+ * @param {json} currentPokemon contains all infos about current pokemon
+ */
 function getAbilities(currentPokemon) {
     let content = document.getElementById('abilities');
     content.innerHTML = '';
@@ -196,6 +191,13 @@ function getAbilities(currentPokemon) {
 }
 
 
+/**
+ * POPUP CARD
+ * function to render stats for current pokemon popup card
+ * 
+ * @param {number} i renders the pokemon stats on the same counter index
+ * @param {boolean} search is false, pokemon list will be rendered / is true, pokemon search will be rendered
+ */
 function showStats(i, search) {
     document.getElementById('pokemon-card-nav-link-1').classList.remove('text-dark');
     document.getElementById('pokemon-card-nav-link-2').classList.add('text-dark');
@@ -214,34 +216,81 @@ function showStats(i, search) {
 }
 
 
+/**
+ * POPUP CARD
+ * function to add the correct background color for current popup card
+ * 
+ * @param {number} i to get the correct counter index
+ * @param {json} currentPokemon contains all infos about current pokemon
+ */
 function getBackgroundColorPopupCard(i, currentPokemon) {
     let color = currentPokemon['types'][0]['type']['name'];
     document.getElementById(`pokemon-card${i}`).classList.add(color);
 }
 
 
+/**
+ * POPUP CARD
+ * function to close popup card by click on close button or website background
+ */
 function closePopupCard() {
     document.getElementById('card-container').classList.add('d-none');
 }
 
 
-// stop closing popup card by click on background for popup card content
+/**
+ * POPUP CARD
+ * function to stop closing popup card by click on popup card background
+ */
 function doNotClosePopupCardContent(event) {
     event.stopPropagation();
 }
 
 
+/**
+ * POPUP CARD
+ * function to go to previous popup card
+ * 
+ * @param {number} i to get the correct counter index
+ * @param {boolean} search is false, pokemon list will be rendered / is true, pokemon search will be rendered
+ */
 function previousPokemon(i, search) {
     document.getElementById('card-container').innerHTML = '';
     i--;
-    console.log(i);
     openPopupCard(i, search)
 }
 
 
+/**
+ * POPUP CARD
+ * function to go to next popup card
+ * 
+ * @param {number} i to get the correct counter index
+ * @param {boolean} search is false, pokemon list will be rendered / is true, pokemon search will be rendered
+ */
 function nextPokemon(i, search) {
     document.getElementById('card-container').innerHTML = '';
     i++;
     openPopupCard(i, search)
+}
+
+
+/**
+ * POPUP CARD
+ * function to disable back or forward button when end of array/index is arrived
+ * 
+ * @param {number} i to get the correct counter index
+ * @param {boolean} search is false, pokemon list will be rendered / is true, pokemon search will be rendered
+ */
+function hideBackAndForwardBtn(i, search) {
+    if (i == 0) {
+        document.getElementById('back-btn').classList.add('d-none');
+    }
+    if (i == pokemonData.length - 1 && search === false) {
+        document.getElementById('forward-btn').classList.add('d-none');
+    }
+    if (i == selectedPokemon.length - 1 && search === true) {
+        document.getElementById('forward-btn').classList.add('d-none');
+    }
 }
 
