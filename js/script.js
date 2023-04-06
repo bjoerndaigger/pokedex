@@ -57,7 +57,7 @@ function searchPokemon() {
             const result = pokemonData[i];
             if (result['name'].toLowerCase().includes(searchInput)) {
                 selectedPokemon.push(result);
-                renderPokemon(selectedPokemon, true);
+                checkSearchValue(selectedPokemon, true);
                 document.getElementById('load-btn').classList.add('d-none');
             } 
         }
@@ -75,6 +75,12 @@ function searchPokemon() {
  */
 function resetInput() {
     document.getElementById('search-input').value = '';
+}
+
+function checkSearchValue(currentPokemon, search) {
+    let checkValue = Object.keys(currentPokemon).length;
+    console.log(checkValue);
+    renderPokemon(currentPokemon, search);
 }
 
 
