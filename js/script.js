@@ -195,7 +195,7 @@ function getAbilities(currentPokemon) {
  * POPUP CARD
  * function to render stats for current pokemon popup card
  * 
- * @param {number} i renders the pokemon stats on the same counter index
+ * @param {number} i to get the correct counter index
  * @param {boolean} search is false, pokemon list will be rendered / is true, pokemon search will be rendered
  */
 function showStats(i, search) {

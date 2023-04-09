@@ -19,22 +19,34 @@ input.addEventListener('keypress', function (event) {
 function pokemonSearch() {
     let searchInput = document.getElementById('search-input').value;
     searchInput = searchInput.toLowerCase();
-    let content = document.getElementById('pokemon');
-    content.innerHTML = '';
-
     if (searchInput.length > 0) {
         selectedPokemon = [];
+        let matchFound = false; // initialize matchfound to false
         for (let i = 0; i < pokemonData.length; i++) {
             const result = pokemonData[i];
             if (result['name'].toLowerCase().includes(searchInput)) {
                 selectedPokemon.push(result);
-                renderPokemonSearch(selectedPokemon)
+                renderPokemonSearch(selectedPokemon);
+                matchFound = true; // set matchfound to true if a match is found
             }
         }
-    } else {
+        if (matchFound === false) { // rendernomatchfound if no match is found
+            renderNoMatchFound();
+        }
+    }
+    else {
         clearPokemonSearch();
     }
-    resetInput();
+    resetSearchInput();
+}
+
+
+/**
+ * function to show that no search result was found
+ */
+function renderNoMatchFound() {
+    let content = document.getElementById('pokemon');
+    content.innerHTML = '<div>No match! Try again or load more Pokemon.</div>';
 }
 
 
@@ -65,6 +77,6 @@ function renderPokemonSearch(selectedPokemon) {
 /**
  * function to reset automatically the value of the search-input 
  */
-function resetInput() {
+function resetSearchInput() {
     document.getElementById('search-input').value = '';
 }
