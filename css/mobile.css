@@ -1,9 +1,6 @@
 @media (max-width: 575px) {
 
-    .search-input-mobile {
-        height: 38px;
-    }
-
+    /* popup card*/
     .pokemon-card {
         width: 320px;
         height: 640px;
@@ -20,7 +17,40 @@
 }
 
 @media (max-width: 475px) {
-    .search-input-mobile {
-        width: 100px !important;
+
+    /* navbar */
+    .navbar-mobile {
+        flex-direction: column;
+    }
+
+    .navbar-brand-mobile {
+        justify-content: flex-start;
+    }
+
+    .search {
+        width: 250px;
+    }
+
+    .search-mobile {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-height: 600px) {
+
+    /* popup card */
+    .pokemon-card {
+        width: 300px;
+        height: 600px;
+    }
+
+    .pokemon-card-img {
+        height: 140px;
+        margin-top: -120px;
+    }
+
+    #more-details {
+        font-size: smaller;
     }
 }

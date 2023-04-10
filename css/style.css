@@ -1,9 +1,36 @@
 /* main */
-
 h2 {
     font-size: 1.5rem !important;
 }
 
+/* navbar */
+.navbar-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    margin: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-img {
+    margin-right: 0.5rem;
+}
+
+.search {
+    margin: 0.75rem;
+    display: flex;
+}
+
+#search-btn {
+    margin-left: 0.25rem;
+}
+
+/* pokemon list*/
 .pokemon-container {
     width: 250px;
     padding: 24px;
@@ -27,7 +54,6 @@ h2 {
 }
 
 /* popup card */
-
 .card-container {
     height: 100vh;
     width: 100%;
@@ -56,14 +82,17 @@ h2 {
     border-top-right-radius: 40px;
 }
 
-.close-btn, .back-btn, .forward-btn {
+.close-btn,
+.back-btn,
+.forward-btn {
     filter: invert(1);
     margin-bottom: 8px;
     height: 32px;
     cursor: pointer;
 }
 
-.back-btn, .forward-btn {
+.back-btn,
+.forward-btn {
     margin-top: 24px;
 }
 
@@ -109,11 +138,16 @@ td:first-child {
 /* add comma between abilities objects */
 
 /* just making the paragraphs inline */
-#abilities > div { display: inline-block; }
+#abilities>div {
+    display: inline-block;
+}
 
 /* appending the commas */
-#abilities > div:after { content: ", " }
+#abilities>div:after {
+    content: ", "
+}
 
 /* removing it for the last index */
-#abilities  > div:last-of-type:after { content: "" }
-
+#abilities>div:last-of-type:after {
+    content: ""
+}
