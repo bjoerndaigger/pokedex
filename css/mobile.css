@@ -1,4 +1,9 @@
-@media (max-width: 375px) {
+@media (max-width: 575px) {
+
+    .search-input-mobile {
+        height: 38px;
+    }
+
     .pokemon-card {
         width: 320px;
         height: 640px;
@@ -14,16 +19,8 @@
     }
 }
 
-@media (max-width: 576px) {
-    .navbar-mobile {
-        flex-direction: column;
-    }
-
-    .navbar-logo-mobile {
-        margin: 16px;
-    }
-
-    .form-mobile {
-        flex-direction: column;
+@media (max-width: 475px) {
+    .search-input-mobile {
+        width: 100px !important;
     }
 }

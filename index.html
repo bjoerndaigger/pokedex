@@ -28,19 +28,20 @@
 </head>
 
 <body onload="loadPokemon()">
-    <nav class="navbar navbar-light bg-light justify-content-between px-3 navbar-mobile">
+    <nav class="navbar navbar-light bg-light px-3">
 
-        <a class="navbar-brand navbar-logo-mobile" href="./index.html">
+        <a class="navbar-brand" href="./index.html">
             <img src="./img/pokeball.png" width="30" height="30" class="d-inline-block align-top" alt="Pokedex">
             Pokedex
           </a>
-       
-        <form class="form-inline d-flex form-mobile">
-            <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Search"
+       <div>
+        <form class="form-inline d-flex justify-content-center align-items-center">
+            <input id="search-input" class="form-control mr-sm-2 search-input-mobile" type="search" placeholder="Search"
                 aria-label="Search">
             <button id="search-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit"
                 onclick="pokemonSearch(); return false">Search</button>
         </form>
+        </div>
     </nav>
 
     <main>
